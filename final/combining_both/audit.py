@@ -1,24 +1,50 @@
-"""Sanity checks on a page's extracted standings."""
+"""Sanity checks on a page's extracted standings and bouts.
+
+Nothing here looks at the page. Every check asks whether the model's answer
+contradicts itself, using only arithmetic that holds for any knockout draw from
+any federation — never a rule about how one publisher lays its sheets out.
+"""
+import math
+from collections import defaultdict
 
 
-def audit(page_no, d, rows):
-    """Cheap checks that catch the exact failures seen in the earlier run."""
+def audit(page_no, d, rows, quiet=False):
+    """Cheap checks that catch the exact failures seen in the earlier run.
+
+    `quiet` runs the same checks without printing — used to score a retry
+    against the answer it might replace."""
     warn = []
-    ranks = [r["rank"] for r in rows if r["rank"] is not None]
     bracket = d.get("page_type") == "draw_sheet"
 
-    # Bracket-only: a ranking table is SUPPOSED to run 1,2,3,4,5 and has no medals.
-    if bracket:
-        if len(ranks) >= 4 and ranks == list(range(1, len(ranks) + 1)):
-            warn.append("ranks are a perfect 1..N sequence — ties likely flattened")
+    # One page can stack a dozen weight classes, each restarting at rank 1, so
+    # every check below runs on one division at a time. Across the whole page a
+    # "3" followed by a "1" is the next division starting, not a mistake.
+    blocks = defaultdict(list)
+    for r in rows:
+        blocks[r.get("division")].append(r)
 
-        bronze = sum(1 for r in rows if (r["medal"] or "").lower() == "bronze")
-        at3 = sum(1 for r in rows if r["rank"] == 3)
-        if bronze and bronze != at3:
-            warn.append(f"{bronze} bronze medals but {at3} rows at rank 3")
+    for div, block in blocks.items():
+        where = f" [{div}]" if len(blocks) > 1 else ""
+        ranks = [r["rank"] for r in block if r["rank"] is not None]
 
-    if ranks != sorted(ranks):
-        warn.append("ranks not in ascending order")
+        # Bracket-only: a ranking table is SUPPOSED to run 1,2,3,4,5, no medals.
+        if bracket:
+            if len(ranks) >= 4 and ranks == list(range(1, len(ranks) + 1)):
+                warn.append(f"ranks are a perfect 1..N sequence{where} — ties likely flattened")
+
+            bronze = sum(1 for r in block if (r["medal"] or "").lower() == "bronze")
+            at3 = sum(1 for r in block if r["rank"] == 3)
+            if bronze and bronze != at3:
+                warn.append(f"{bronze} bronze medals but {at3} rows at rank 3{where}")
+
+        if ranks != sorted(ranks):
+            warn.append(f"ranks not in ascending order{where}")
+
+    # A table with no previous-rank column tempts the model into copying the one
+    # next to it. Identical values row after row is the giveaway.
+    prev = [(r["previous_rank"], r["rank"]) for r in rows if r["previous_rank"]]
+    if len(prev) >= 4 and all(str(p) == str(k) for p, k in prev):
+        warn.append(f"previous_rank copies rank on all {len(prev)} rows — likely no such column")
 
     for r in rows:
         for f in ("name_short", "name"):
@@ -26,20 +52,24 @@ def audit(page_no, d, rows):
             if len(v) == 3 and v.isupper() and v.isalpha() and v == (r["country"] or ""):
                 warn.append(f"country code leaked into {f}: {v}")
 
-    # Division is per row now: a stacked page has none at the top and one per row.
     if not d["division"] and not all(r.get("division") for r in rows):
         warn.append("division missing")
 
-    for w in warn:
-        print(f"  ! p{page_no}: {w}")
+    warn = list(dict.fromkeys(warn))
+    if not quiet:
+        for w in warn:
+            print(f"  ! p{page_no}: {w}")
     return warn
 
 
-def audit_bouts(page_no, bouts, boxers_drawn=None):
+def audit_bouts(page_no, bouts, boxers_drawn=None, rounds_printed=None, quiet=False):
     """The bracket's own consistency. A bout the model half-read usually shows up
-    as a winner who was not in it, or a corner colour where a name belongs."""
+    as a winner who was not in it, or a corner colour where a name belongs; a
+    column it mis-aligned shows up in the counts."""
     warn = []
     colours = {"red", "blue"}
+    two_sided = [b for b in bouts if b.get("boxer_a") and b.get("boxer_b")]
+    byes = [b for b in bouts if not (b.get("boxer_a") and b.get("boxer_b"))]
 
     for b in bouts:
         a, bb, w = b.get("boxer_a"), b.get("boxer_b"), b.get("winner")
@@ -50,18 +80,48 @@ def audit_bouts(page_no, bouts, boxers_drawn=None):
         if not bb and (b.get("result") or "").strip().lower() != "bye":
             warn.append(f"one-sided bout with no Bye: {a} / {b.get('result')}")
 
-    rounds = {b["round"] for b in bouts if b.get("round")}
-    if len(bouts) > 1 and not rounds:
+    used = [b["round"] for b in bouts if b.get("round")]
+    # Bout-results tables number their bouts and print no round at all, so a
+    # missing round is only suspicious on a page that numbers nothing.
+    numbered = any(b.get("bout_no") for b in bouts)
+    if len(bouts) > 1 and not used and not numbered:
         warn.append(f"{len(bouts)} bouts but no round named on any of them")
 
-    # The sheet says how many boxers it drew, and a knockout of N is decided in
-    # exactly N-1 real bouts. Off by one and a pair was read across two boxes.
-    if boxers_drawn:
-        real = sum(1 for b in bouts if b.get("boxer_a") and b.get("boxer_b"))
-        if real != boxers_drawn - 1:
-            warn.append(f"{boxers_drawn} boxers drawn needs {boxers_drawn - 1} "
-                        f"two-sided bouts, got {real}")
+    if rounds_printed:
+        stray = {r for r in used if r not in rounds_printed}
+        if stray:
+            warn.append(f"round(s) {sorted(stray)} not among the headings "
+                        f"printed on the page {rounds_printed}")
 
-    for w in dict.fromkeys(warn):
-        print(f"  ! p{page_no}: {w}")
+    # Everything below follows from the one number the sheet prints. A knockout
+    # of N is decided in N-1 two-sided bouts, drawn in a frame of the next power
+    # of two, so the frame carries frame-1 lines and frame-N of them are byes.
+    if boxers_drawn and boxers_drawn > 1:
+        frame = 1 << math.ceil(math.log2(boxers_drawn))
+        short = len(two_sided) != boxers_drawn - 1
+        if short:
+            warn.append(f"{boxers_drawn} boxers drawn needs {boxers_drawn - 1} "
+                        f"two-sided bouts, got {len(two_sided)}")
+
+        # Only chased when the bouts are already wrong, or the byes are half
+        # there: a federation that draws no bye lines at all is not an error.
+        if (short or byes) and len(bouts) != frame - 1:
+            warn.append(f"a frame of {frame} holds {frame - 1} lines "
+                        f"({boxers_drawn - 1} bouts + {frame - boxers_drawn} byes), "
+                        f"got {len(bouts)} ({len(two_sided)} + {len(byes)})")
+
+        # Pairs halve left to right, so in printed order the counts must be
+        # frame/2, frame/4 ... 1. A round short or a heading skipped shows here.
+        if rounds_printed and short:
+            counts = [sum(1 for b in bouts if b.get("round") == r) for r in rounds_printed]
+            want = [frame >> (i + 1) for i in range(len(rounds_printed))]
+            if counts != want:
+                warn.append("lines per round should halve "
+                            f"{dict(zip(rounds_printed, want))}, got "
+                            f"{dict(zip(rounds_printed, counts))}")
+
+    warn = list(dict.fromkeys(warn))
+    if not quiet:
+        for w in warn:
+            print(f"  ! p{page_no}: {w}")
     return warn

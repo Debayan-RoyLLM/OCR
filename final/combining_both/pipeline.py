@@ -6,7 +6,8 @@ import fitz  # pip install pymupdf
 import pandas as pd
 
 from audit import audit, audit_bouts
-from config import ALL_FIELDS, BOUT_FIELDS, DPI, FIELDS, LLM_HEADERS
+from config import (ALL_FIELDS, BOUT_FIELDS, CORE_FIELDS, DPI, FIELDS,
+                    KEEP_UNCHOSEN, LLM_HEADERS, RETRY_ON_AUDIT)
 from llm import extract_page, llm_headers, page_png_b64, usage_summary
 from triage import decide
 
@@ -29,26 +30,18 @@ def extract_pdf(pdf_path):
 
         png = page_png_b64(page, DPI)
         try:
-            d = extract_page(png)
+            d, rows, bouts, warns = read_page(i, png)
         except Exception as e:
             print(f"p{i}: FAILED — {e}")
             failed.append(i)
             continue
 
-        if d["page_type"] == "other":
-            print(f"p{i}: model classified it 'other' — nothing to extract")
+        if d is None:
             skipped.append(i)
             continue
-
-        rows = [r for r in d["standings"] if r["name_short"] or r["name"]]
-        bouts = [b for b in d["bouts"] if b["boxer_a"] or b["boxer_b"]]
         if not rows and not bouts:
-            print(f"p{i}: classified {d['page_type']} but returned nothing")
             continue
-
-        if rows and audit(i, d, rows):
-            flagged.append(i)
-        if bouts and audit_bouts(i, bouts, d["boxers_drawn"]):
+        if warns:
             flagged.append(i)
 
         # A page can stack several weight classes, so division is a per-row answer.
@@ -81,18 +74,87 @@ def extract_pdf(pdf_path):
     return all_rows, all_bouts, stats
 
 
+def unpack(d):
+    """The two arrays, minus the entries that name nobody."""
+    return ([r for r in d["standings"] if r["name_short"] or r["name"]],
+            [b for b in d["bouts"] if b["boxer_a"] or b["boxer_b"]])
+
+
+def check(page_no, d, rows, bouts, quiet=False):
+    warns = []
+    if rows:
+        warns += audit(page_no, d, rows, quiet=quiet)
+    if bouts:
+        warns += audit_bouts(page_no, bouts, d["boxers_drawn"],
+                             d["rounds_printed"], quiet=quiet)
+    return warns
+
+
+def read_page(page_no, png):
+    """Extract one page, check the answer, and ask again if it does not add up.
+
+    The audit already knows exactly what is short — "10 boxers needs 9 bouts, got
+    7" — so the cheapest fix is to hand that complaint back and let the model
+    re-read the page. Only pages that fail pay for the second call, and the
+    retry is kept only if it is actually better than what it replaces.
+    """
+    d = extract_page(png)
+    if d["page_type"] == "other":
+        print(f"p{page_no}: model classified it 'other' — nothing to extract")
+        return None, [], [], []
+
+    rows, bouts = unpack(d)
+    if not rows and not bouts:
+        print(f"p{page_no}: classified {d['page_type']} but returned nothing")
+        return d, [], [], []
+
+    # Quiet until the end: only whatever survives as the best read gets printed.
+    best = (d, rows, bouts, check(page_no, d, rows, bouts, quiet=True))
+
+    for attempt in range(1, RETRY_ON_AUDIT + 1):
+        if not best[3]:
+            break
+        print(f"  ...p{page_no} did not add up — reading it again "
+              f"({attempt} of {RETRY_ON_AUDIT})")
+        try:
+            d2 = extract_page(png, retry_note(best[3]))
+            rows2, bouts2 = unpack(d2)
+        except Exception as e:
+            print(f"  ! retry failed ({e}) — keeping the best answer so far")
+            break
+
+        warns2 = check(page_no, d2, rows2, bouts2, quiet=True)
+        if not (rows2 or bouts2) or len(warns2) >= len(best[3]):
+            print(f"  no better ({len(warns2)} complaints vs {len(best[3])}) — "
+                  f"keeping the earlier read")
+            continue
+        print(f"  better: {len(best[3])} complaints -> {len(warns2)}"
+              f"  ({len(best[2])} bouts -> {len(bouts2)})")
+        best = (d2, rows2, bouts2, warns2)
+
+    for w in best[3]:
+        print(f"  ! p{page_no}: {w}")
+    return best
+
+
+def retry_note(warns):
+    """The audit's own words, handed back to the model."""
+    return ("\n\n" + "=" * 70 + "\n"
+            "YOUR FIRST ANSWER FOR THIS PAGE WAS CHECKED AND IT DOES NOT ADD UP:\n\n"
+            + "\n".join(f"  - {w}" for w in warns)
+            + "\n\nRead the page again from the beginning and return the COMPLETE\n"
+              "answer, not a patch. The counts above are arithmetic, not opinion —\n"
+              "if you are short of bouts, a whole column or a pair inside one has\n"
+              "been missed, most often where byes crowd the first column. Go\n"
+              "through that column line by line. Do NOT invent anything to make\n"
+              "the numbers balance: every line must be drawn on the page.\n")
+
+
 def sample_values(records, per_field=3):
     """A few real values per field, for the header call to name columns from."""
     return {f: list(dict.fromkeys(
                 str(r[f]) for r in records if r.get(f) not in (None, "")))[:per_field]
             for f in ALL_FIELDS}
-
-
-def table_layout(layout, fields):
-    """The columns of one file, in the order the model chose for the whole set."""
-    order, headers = layout
-    cols = [f for f in order if f in fields]
-    return cols, {f: headers[f] for f in cols}
 
 
 def clean_header(header):
@@ -109,11 +171,13 @@ def clean_header(header):
 
 
 def resolve_layout(chosen):
-    """Turn the model's picks into (fields, {field: header}).
+    """Turn the model's picks into (columns it chose, {field: header}).
 
-    Trusted for naming and ordering, checked for everything else: a field it
-    invented or repeated is dropped, and one it forgot is appended under its own
-    name. The CSV can gain a better header but can never lose a column."""
+    The model decides which columns the document gets and what they are called;
+    this only throws out an answer it could not have meant — a field it invented,
+    one it named twice, a header that is really a value off the page. Fields it
+    left out are not columns, but they keep a default name in case the finished
+    data proves it wrong (see finalize)."""
     fields, headers = [], {}
     for field, header in chosen:
         header = clean_header(header)
@@ -122,13 +186,54 @@ def resolve_layout(chosen):
             fields.append(field)
             headers[field] = header
 
-    missing = [f for f in ALL_FIELDS if f not in headers]
-    if missing and chosen:
-        print(f"! model returned no usable header for {missing} — kept as-is")
-    for f in missing:
-        fields.append(f)
-        headers[f] = f if f not in headers.values() else f"{f}_field"
+    if not fields:                        # LLM_HEADERS off, or the call failed
+        fields = list(ALL_FIELDS)
+    for f in ALL_FIELDS:
+        headers.setdefault(f, f if f not in headers.values() else f"{f}_field")
     return fields, headers
+
+
+def finalize(df, layout, fields):
+    """The model chose the columns from one page; the finished data has the last
+    word. A column it kept that turned out blank in every row is dropped, and one
+    it left out that turned out to hold values is put back — a guess made on page
+    1 must not cost a column of real data on page 40."""
+    chosen, headers = layout
+    chosen = [f for f in chosen if f in fields]
+
+    def filled(c):
+        if c not in df.columns:
+            return False
+        col = df[c]
+        return bool(col.notna().any() and (col.astype("string").str.strip() != "").any())
+
+    keep = [f for f in chosen if filled(f)]
+    empty = [f for f in chosen if f not in keep]
+
+    # A column identical to an earlier one in every row says nothing new.
+    same = [b for i, a in enumerate(keep) for b in keep[i + 1:] if df[a].equals(df[b])]
+    keep = [f for f in keep if f not in same]
+
+    # A field the model left out stays out, even where the extractor put
+    # something in it — a column it judged absent from the page is usually
+    # absent, and what lands there is junk copied from a neighbouring column.
+    # The exception is the core: drop `date` or `name` and the file stops being
+    # identifiable, so those come back on their own.
+    left_out = {f: int(df[f].notna().sum()) for f in fields
+                if f not in chosen and filled(f)}
+    back = [f for f in left_out if f in CORE_FIELDS or KEEP_UNCHOSEN]
+    for f in back:                               # into its canonical place
+        before = [g for g in fields[:fields.index(f)] if g in keep]
+        keep.insert(keep.index(before[-1]) + 1 if before else 0, f)
+
+    if empty: print(f"  dropped, empty in every row: {[headers[f] for f in empty]}")
+    if same:  print(f"  dropped, duplicate column:   {[headers[f] for f in same]}")
+    if back:  print(f"  kept back, identifies the row: {back}")
+    dropped = {f: n for f, n in left_out.items() if f not in back}
+    if dropped:
+        print(f"  NOT WRITTEN, model gave no column but rows hold values: "
+              + ", ".join(f"{f} ({n})" for f, n in dropped.items()))
+    return keep, {f: headers[f] for f in keep}
 
 
 ISO = r"\d{4}-\d{2}-\d{2}"
@@ -181,9 +286,11 @@ def run(pdf_path, out_csv):
 
     print("\ntriage: " + " | ".join(f"{k}={len(v)}" for k, v in reasons.items()))
     if reasons.get("judge"):
-        print(f"pages the gates failed but the judge rescued: {reasons['judge']}")
-    if stats["dropped"]:
-        print(f"pages dropped before extraction: {stats['dropped']}")
+        print(f"pages the judge sent through: {reasons['judge']}")
+    if reasons.get("blank page"):
+        print(f"blank pages, dropped free: {reasons['blank page']}")
+    if reasons.get("judge rejected"):
+        print(f"pages the judge turned away: {reasons['judge rejected']}")
     if stats["skipped"]:
         print(f"pages the model classified 'other': {stats['skipped']}")
     if stats["failed"]:
@@ -198,9 +305,10 @@ def run(pdf_path, out_csv):
 
     if all_rows:
         df = build_dataframe(all_rows)
-        fields, headers = table_layout(stats["layout"], FIELDS)
+        print()
+        fields, headers = finalize(df, stats["layout"], FIELDS)
         df[fields].rename(columns=headers).to_csv(out_csv, index=False)
-        print(f"\n{len(df)} rows -> {out_csv}")
+        print(f"{len(df)} rows -> {out_csv}")
         print("header: " + ", ".join(headers[f] for f in fields))
         print(f"divisions: {df['division'].nunique()} | "
               f"dates: {list(df['date'].unique())}")
@@ -211,9 +319,10 @@ def run(pdf_path, out_csv):
     if all_bouts:
         bouts_csv = Path(out_csv).with_name(Path(out_csv).stem + "_bouts.csv")
         bf = build_bouts(all_bouts)
-        fields, headers = table_layout(stats["layout"], BOUT_FIELDS)
+        print()
+        fields, headers = finalize(bf, stats["layout"], BOUT_FIELDS)
         bf[fields].rename(columns=headers).to_csv(bouts_csv, index=False)
-        print(f"\n{len(bf)} bouts -> {bouts_csv}")
+        print(f"{len(bf)} bouts -> {bouts_csv}")
         print("header: " + ", ".join(headers[f] for f in fields))
         print(f"rounds: {[r for r in bf['round'].dropna().unique()]}")
 

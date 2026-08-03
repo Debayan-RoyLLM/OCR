@@ -27,25 +27,38 @@ ALL_FIELDS = FIELDS + [f for f in BOUT_FIELDS if f not in FIELDS]
 LLM_HEADERS  = True            # off = write the CSVs with the field names above
 HEADER_MODEL = "gpt-4o"        # one call per document; worth the good model
 
-HINTS = ["draw sheet", "standings", "quarterfinal", "semifinal", "preliminaries"]
-PREFILTER = True
+# When the audit says a page does not add up, hand it that complaint and read the
+# page again. How many extra attempts a failing page gets; 0 turns it off. Only
+# failing pages pay, and an answer is kept only if it has fewer complaints than
+# the best one so far, so a retry can never make a page worse.
+RETRY_ON_AUDIT = 2
+
+# The model picks the columns off the first real page and that stands for the
+# whole document. A field it left out is not written even if later pages put
+# something in it — the count is always printed. Set True to write them anyway.
+KEEP_UNCHOSEN = False
+
+# ...except these. Without them a row cannot be identified or traced, so they are
+# written whenever they hold data, whatever the model decided. Everything outside
+# this set — medal, name_short, previous_rank, points_total, bout_no, page_type,
+# date_raw, date_source — is the model's call.
+CORE_FIELDS = {"event", "date", "division", "_page",
+               "rank", "name", "country",                    # standings
+               "round", "boxer_a", "boxer_b", "winner", "result"}  # bouts
 
 # --- page triage --------------------------------------------------------------
-# EVERY enabled gate must pass before the expensive extraction call is made.
-# Free gates run first; a paid gate is only asked once the free ones agree.
-VECTOR_TRIAGE = True           # gate 3: does the page look like a bracket/flow chart?
-LLM_TRIAGE    = False          # gate 4: ask a small vision model. costs money.
-TRIAGE_MODEL  = "gpt-4o-mini"  # only used when LLM_TRIAGE is on
-TRIAGE_DPI    = 110            # thumbnail resolution for gate 4
-MIN_STROKES   = 25             # horizontal+vertical line segments implying a tree
-MIN_BOXES     = 6              # or this many real rectangles
+# Two filters, in this order:
+#   1. blank page  -> discarded where it stands, nothing paid
+#   2. the judge   -> a cheap vision model reads every remaining page and says
+#                     whether it is worth an extraction call
+# No keyword or geometry guessing sits in front of the judge any more: the only
+# thing that decides a page's fate is a model that has actually looked at it.
+PREFILTER   = True             # off = extract every non-blank page, no judging
+LLM_FILTER  = True             # off = keep every non-blank page without asking
+JUDGE_MODEL = "gpt-4o-mini"
+JUDGE_DPI   = 150              # the judge has to READ the page, not glance at it
 
-# A page that fails any gate is not dropped outright — a cheap vision model reads
-# it and has the final say. Set False to drop it for free instead.
 SHOW_TOKENS = True             # print the API's own usage numbers per call
-JUDGE_FALLBACK = True
-JUDGE_MODEL    = "gpt-4o-mini"
-JUDGE_DPI      = 150           # higher than TRIAGE_DPI: the judge must actually read
 
 
 def api_key() -> str:

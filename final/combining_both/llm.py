@@ -6,9 +6,8 @@ from collections import defaultdict
 import requests
 
 from config import (BASE_URL, HEADER_MODEL, JUDGE_DPI, JUDGE_MODEL, MODEL,
-                    SHOW_TOKENS, TRIAGE_DPI, TRIAGE_MODEL, api_key)
-from prompts import (HEADER_SCHEMA, JUDGE_PROMPT, PROMPT, SCHEMA, TRIAGE_PROMPT,
-                     header_prompt)
+                    SHOW_TOKENS, api_key)
+from prompts import HEADER_SCHEMA, JUDGE_PROMPT, PROMPT, SCHEMA, header_prompt
 
 # Running tally, keyed by "<call kind> (<model>)". Filled from the `usage` block
 # the API returns — these are the real billed numbers, not an estimate.
@@ -75,15 +74,17 @@ def page_png_b64(page, dpi: int) -> str:
     return base64.b64encode(page.get_pixmap(dpi=dpi).tobytes("png")).decode()
 
 
-def extract_page(b64: str) -> dict:
+def extract_page(b64: str, note: str = "") -> dict:
+    """Read one page. `note` is appended to the instructions on a second attempt:
+    the audit's own complaint about the first answer, told back to the model."""
     payload = {
         "model": MODEL,
         "temperature": 0,
         "max_tokens": 8000,        # a full bracket is a lot of bouts on top of the standings
-        "messages": _image_message(b64, PROMPT, "high"),
+        "messages": _image_message(b64, PROMPT + note, "high"),
         "response_format": SCHEMA,
     }
-    body = _chat(payload, timeout=300, label="extract")
+    body = _chat(payload, timeout=300, label="retry" if note else "extract")
     if body["choices"][0].get("finish_reason") == "length":
         raise RuntimeError("output truncated — raise max_tokens")
     return json.loads(body["choices"][0]["message"]["content"])
@@ -111,29 +112,10 @@ def llm_headers(b64: str, samples: dict = None) -> list:
         return []
 
 
-def llm_has_figure(page) -> bool:
-    """Gate 4 — one cheap low-detail vision call, bounded boolean answer.
-    Fails OPEN: if the call errors, let the page through rather than drop it."""
-    payload = {
-        "model": TRIAGE_MODEL,
-        "temperature": 0,
-        "max_tokens": 16,
-        "messages": _image_message(page_png_b64(page, TRIAGE_DPI), TRIAGE_PROMPT, "low"),
-        "response_format": {"type": "json_object"},
-    }
-    try:
-        body = _chat(payload, timeout=60, label="gate4")
-        return bool(json.loads(
-            body["choices"][0]["message"]["content"]).get("has_figure"))
-    except Exception as e:
-        print(f"  ! triage call failed ({e}) — passing page through")
-        return True
-
-
 def llm_judge(page) -> tuple:
-    """Second opinion for a page that failed a gate. The gates guess from shape;
-    this one reads. Returns (keep, why). Fails OPEN — a broken judge must never
-    be the reason a real draw sheet goes missing."""
+    """The page filter. Reads every non-blank page and says whether it is worth
+    an extraction call. Returns (keep, why). Fails OPEN — a broken judge must
+    never be the reason a real draw sheet goes missing."""
     payload = {
         "model": JUDGE_MODEL,
         "temperature": 0,
