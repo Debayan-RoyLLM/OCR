@@ -79,7 +79,7 @@ def extract_page(b64: str) -> dict:
     payload = {
         "model": MODEL,
         "temperature": 0,
-        "max_tokens": 4000,
+        "max_tokens": 8000,        # a full bracket is a lot of bouts on top of the standings
         "messages": _image_message(b64, PROMPT, "high"),
         "response_format": SCHEMA,
     }

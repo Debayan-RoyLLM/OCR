@@ -14,7 +14,17 @@ FIELDS = ["event", "date", "division", "page_type", "rank", "name", "name_short"
           "country", "medal", "previous_rank", "points_total",
           "date_raw", "date_source", "_page"]
 
-LLM_HEADERS  = True            # off = write the CSV with FIELDS as the header
+# A draw sheet holds two different tables: who FINISHED where (FIELDS, above) and
+# who BOXED WHOM to get there. One row per bout, written to <output>_bouts.csv.
+BOUT_FIELDS = ["event", "date", "division", "round", "bout_no",
+               "boxer_a", "country_a", "boxer_b", "country_b",
+               "winner", "result", "date_raw", "date_source", "_page"]
+
+# Both tables are named in one header call, so a field they share — event, date,
+# division, _page — gets the same column name in both files.
+ALL_FIELDS = FIELDS + [f for f in BOUT_FIELDS if f not in FIELDS]
+
+LLM_HEADERS  = True            # off = write the CSVs with the field names above
 HEADER_MODEL = "gpt-4o"        # one call per document; worth the good model
 
 HINTS = ["draw sheet", "standings", "quarterfinal", "semifinal", "preliminaries"]
