@@ -1,0 +1,39 @@
+"""Tunables and constants shared by the whole pipeline."""
+import os
+
+BASE_URL = "https://api.openai.com/v1"
+MODEL    = "gpt-4o"          # see note on model choice below
+DPI      = 220
+
+## for csv
+COLS = ["event", "date", "division", "page_type", "rank", "name", "name_short",
+        "country", "medal", "previous_rank", "points_total",
+        "date_raw", "date_source", "_page"]
+
+HINTS = ["draw sheet", "standings", "quarterfinal", "semifinal", "preliminaries"]
+PREFILTER = True
+
+# --- page triage --------------------------------------------------------------
+# EVERY enabled gate must pass before the expensive extraction call is made.
+# Free gates run first; a paid gate is only asked once the free ones agree.
+VECTOR_TRIAGE = True           # gate 3: does the page look like a bracket/flow chart?
+LLM_TRIAGE    = False          # gate 4: ask a small vision model. costs money.
+TRIAGE_MODEL  = "gpt-4o-mini"  # only used when LLM_TRIAGE is on
+TRIAGE_DPI    = 110            # thumbnail resolution for gate 4
+MIN_STROKES   = 25             # horizontal+vertical line segments implying a tree
+MIN_BOXES     = 6              # or this many real rectangles
+
+# A page that fails any gate is not dropped outright — a cheap vision model reads
+# it and has the final say. Set False to drop it for free instead.
+SHOW_TOKENS = True             # print the API's own usage numbers per call
+JUDGE_FALLBACK = True
+JUDGE_MODEL    = "gpt-4o-mini"
+JUDGE_DPI      = 150           # higher than TRIAGE_DPI: the judge must actually read
+
+
+def api_key() -> str:
+    """Read the key at call time so importing a module never explodes."""
+    try:
+        return os.environ["OPENAI_API_KEY"]
+    except KeyError:
+        raise RuntimeError("OPENAI_API_KEY is not set") from None

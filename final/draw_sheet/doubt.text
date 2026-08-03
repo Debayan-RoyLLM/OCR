@@ -1,0 +1,3 @@
+Triage prompy vs judge prompt
+triage.py#57-57
+key word hint -> geometry -> cheap LLm call ,  if all fails full LLM as judge ?
