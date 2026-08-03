@@ -26,7 +26,8 @@ def audit(page_no, d, rows):
             if len(v) == 3 and v.isupper() and v.isalpha() and v == (r["country"] or ""):
                 warn.append(f"country code leaked into {f}: {v}")
 
-    if not d["division"]:
+    # Division is per row now: a stacked page has none at the top and one per row.
+    if not d["division"] and not all(r.get("division") for r in rows):
         warn.append("division missing")
 
     for w in warn:

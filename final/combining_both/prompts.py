@@ -1,4 +1,5 @@
 """The extraction contract: response schema and the instructions that go with it."""
+from config import FIELDS
 
 SCHEMA = {
     "type": "json_schema",
@@ -14,7 +15,7 @@ SCHEMA = {
                 "event": {"type": ["string", "null"],
                           "description": "Tournament name, the largest heading at the top."},
                 "division": {"type": ["string", "null"],
-                             "description": "Weight/category line, e.g. 'Elite Women - 48 Kg (EW-48 kg)'."},
+                             "description": "The page's weight/category line, e.g. 'Elite Women - 48 Kg (EW-48 kg)'. Null if the page stacks several categories — then each row carries its own."},
                 "date_raw": {"type": ["string", "null"],
                              "description": "The date exactly as printed anywhere on the page — header, title, or footer. Not tidied."},
                 "date_iso": {"type": ["string", "null"],
@@ -26,6 +27,8 @@ SCHEMA = {
                     "items": {
                         "type": "object",
                         "properties": {
+                            "division": {"type": ["string", "null"],
+                                         "description": "The weight class / event type THIS row sits under, copied from the nearest heading above it or from the row's own weight-category column. Null only if the page shows no category at all."},
                             "rank": {"type": ["integer", "null"],
                                      "description": "The digit printed BEFORE the period. Transcribe it; never renumber."},
                             "name_short": {"type": ["string", "null"],
@@ -41,8 +44,8 @@ SCHEMA = {
                             "points_total": {"type": ["number", "null"],
                                              "description": "Ranking tables only: the total/final points column. Null on draw sheets."},
                         },
-                        "required": ["rank", "name_short", "country", "medal", "name",
-                                     "previous_rank", "points_total"],
+                        "required": ["division", "rank", "name_short", "country",
+                                     "medal", "name", "previous_rank", "points_total"],
                         "additionalProperties": False,
                     },
                 },
@@ -71,6 +74,27 @@ for a page you have classified as draw_sheet or ranking_table.
 STEP 2 — Header. Read the tournament or publication name (largest text at top)
 and the weight/category line. Copy each EXACTLY as printed. On a ranking table
 the category heading — e.g. "WOMEN'S 50KG RANKINGS" — is the division.
+
+STEP 2a — Division belongs to the ROW, not to the page. One page very often
+holds SEVERAL weight classes stacked one under the other:
+
+    Men's Elite 50Kg          <- heading
+    Rank Name Seed NOC        <- column labels
+    1  Jalilov Asilbek  UZB   <- these rows are 50Kg
+    ...
+    Men's Elite 55Kg          <- next heading
+    1  Olimov Samandar  UZB   <- these rows are 55Kg
+
+Give EVERY row its own `division`, copied EXACTLY from the nearest category
+heading above it. A row must never inherit the heading of the block above or
+below its own. Where each row instead has a weight-category CELL — a "Weight
+Category" column printing "E-F-48Kg" — that cell is that row's division.
+
+A page-wide label such as "Top 8", "Final Standings", "Results" or "Page 3 of 7"
+is NOT a division: it says nothing about weight or category. Never use one.
+
+Set the top-level `division` only when the WHOLE page is a single category —
+otherwise leave it null; the rows carry it.
 
 STEP 2b — Date. Search the WHOLE page, not only the header:
   - an "As of" / "as at" / "Date:" line
@@ -105,6 +129,8 @@ Each standings line has this exact form:
   name_short = the text between the period and the opening parenthesis.
   country    = the 3 letters inside the parentheses.
   medal      = Gold / Silver / Bronze, or null if nothing follows.
+  division   = the weight class this box belongs to — the sheet's own category
+               line, or the row's Weight Category cell on a bout-results page.
   previous_rank, points_total = null.
 
 CRITICAL — ranks tie and repeat. Two bronze medallists are BOTH printed "3." and
@@ -119,8 +145,11 @@ heading itself, and page furniture.
 A row typically reads:  <rank> <prev> <NAME> <CCC> <points> <points> <total>
 
   rank          = the leftmost number, as printed.
+  division      = the category heading standing directly above this row's block.
   previous_rank = the next column exactly as printed — a number, or the literal
-                  "x" for a new entry. Keep it as a string.
+                  "x" for a new entry. Keep it as a string. If the table has no
+                  previous-rank column at all, null — never put another column
+                  (seed, code, result) here.
   name          = the athlete name with the country code removed.
   name_short    = the same athlete name.
   country       = the 3-letter code.
@@ -165,3 +194,98 @@ JUDGE_PROMPT = (
     "If you are genuinely unsure, answer true.\n"
     'Reply with JSON only: {"has_standings": true, "why": "<six words max>"}'
 )
+
+# --- CSV header ---------------------------------------------------------------
+# Asked ONCE per document, on the first page that survives triage and yields
+# rows. The model does not choose what is extracted — FIELDS is fixed by SCHEMA —
+# only what each column is called in the CSV and in what order they sit. The
+# answer is cached for the whole run so page 40 can never disagree with page 1.
+HEADER_SCHEMA = {
+    "type": "json_schema",
+    "json_schema": {
+        "name": "csv_header",
+        "strict": True,
+        "schema": {
+            "type": "object",
+            "properties": {
+                "columns": {
+                    "type": "array",
+                    "description": "Every field exactly once, in the order the "
+                                   "columns should appear in the CSV.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "field": {"type": "string", "enum": FIELDS,
+                                      "description": "The internal field being named."},
+                            "header": {"type": "string",
+                                       "description": "The column heading to print for it."},
+                        },
+                        "required": ["field", "header"],
+                        "additionalProperties": False,
+                    },
+                },
+            },
+            "required": ["columns"],
+            "additionalProperties": False,
+        },
+    },
+}
+
+HEADER_PROMPT = """\
+A whole document is being turned into ONE CSV, and this page is a sample of it.
+Every row will always carry these fourteen fields. Their MEANING is fixed — you
+are only choosing what to call each one at the top of the CSV.
+
+  field          what the value always is        keep this name unless...
+  event          the tournament / publication name
+  date           that date as YYYY-MM-DD
+  division       the weight class or category the row belongs to  ("weight_class")
+  page_type      "draw_sheet" or "ranking_table" — the kind of page it came from
+  rank           the athlete's placing
+  name           the athlete's full name         ("boxer", "athlete")
+  name_short     the same athlete's name as abbreviated in the standings box
+  country        the 3-letter country code       ("noc")
+  medal          "Gold" / "Silver" / "Bronze", or empty
+  previous_rank  the athlete's rank in the PREVIOUS edition of the ranking
+  points_total   the athlete's total ranking points
+  date_raw       that same date exactly as printed on the page
+  date_source    where on the page the date was found
+  _page          the PDF page number             ("page")
+
+Return all fourteen, once each, ordered as they should read in the CSV:
+identifying columns first, provenance and debugging columns (date_raw,
+date_source, _page) last.
+
+Rules — read them all before answering:
+  - The default is to KEEP the field's own name. Rename only when this document
+    genuinely uses a different word for the SAME thing (country -> "noc").
+  - NEVER use a value off the page as a header. "world_boxing_cup_finals_2025"
+    is a value of `event`; the header is "event". Same for dates and weights.
+  - NEVER borrow a column label from this page for a field that means something
+    else. A page showing "Winner / Result / Decision / Seed / Bout" does not make
+    `medal` "winner", `previous_rank` "result", `points_total` "decision", or
+    `name_short` "seed". If in doubt, keep the field's own name.
+  - lowercase snake_case, ASCII, at most three words, under 25 characters.
+  - Two columns must never get the same header.
+  - Do not merge, drop, invent, or split fields.
+"""
+
+
+def header_prompt(samples: dict) -> str:
+    """HEADER_PROMPT plus real values already pulled out of this document.
+
+    Shown because the model kept naming fields after the columns it could SEE on
+    the page — calling `name_short` "seed" because the page has a Seed column.
+    Values it can read settle that: nobody calls "Bak Chorong" a seed."""
+    if not samples:
+        return HEADER_PROMPT
+
+    lines = []
+    for field, values in samples.items():
+        shown = ", ".join(f'"{v}"' for v in values) if values else "(always empty)"
+        lines.append(f"  {field:<14} {shown}")
+
+    return HEADER_PROMPT + (
+        "\nBefore you answer: here is what these fields ACTUALLY hold in this "
+        "document.\nName each column after the values you see, not after a "
+        "column label printed on the page.\n\n" + "\n".join(lines) + "\n")

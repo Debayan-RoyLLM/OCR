@@ -5,9 +5,10 @@ from collections import defaultdict
 
 import requests
 
-from config import (BASE_URL, JUDGE_DPI, JUDGE_MODEL, MODEL, SHOW_TOKENS,
-                    TRIAGE_DPI, TRIAGE_MODEL, api_key)
-from prompts import JUDGE_PROMPT, PROMPT, SCHEMA, TRIAGE_PROMPT
+from config import (BASE_URL, HEADER_MODEL, JUDGE_DPI, JUDGE_MODEL, MODEL,
+                    SHOW_TOKENS, TRIAGE_DPI, TRIAGE_MODEL, api_key)
+from prompts import (HEADER_SCHEMA, JUDGE_PROMPT, PROMPT, SCHEMA, TRIAGE_PROMPT,
+                     header_prompt)
 
 # Running tally, keyed by "<call kind> (<model>)". Filled from the `usage` block
 # the API returns — these are the real billed numbers, not an estimate.
@@ -86,6 +87,28 @@ def extract_page(b64: str) -> dict:
     if body["choices"][0].get("finish_reason") == "length":
         raise RuntimeError("output truncated — raise max_tokens")
     return json.loads(body["choices"][0]["message"]["content"])
+
+
+def llm_headers(b64: str, samples: dict = None) -> list:
+    """Asked once per document, on a page we have already rendered and extracted.
+    Gets that page's image AND a few values already pulled off it, so it names
+    the columns after what they hold. Returns [(field, header)] in the order it
+    wants them. Fails OPEN: on any error return [], and the caller falls back to
+    the internal field names rather than losing the run's output."""
+    payload = {
+        "model": HEADER_MODEL,
+        "temperature": 0,
+        "max_tokens": 700,
+        "messages": _image_message(b64, header_prompt(samples or {}), "high"),
+        "response_format": HEADER_SCHEMA,
+    }
+    try:
+        body = _chat(payload, timeout=120, label="header")
+        cols = json.loads(body["choices"][0]["message"]["content"])["columns"]
+        return [(c["field"], c["header"]) for c in cols]
+    except Exception as e:
+        print(f"  ! header call failed ({e}) — using the internal field names")
+        return []
 
 
 def llm_has_figure(page) -> bool:

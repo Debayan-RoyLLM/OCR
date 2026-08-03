@@ -6,9 +6,16 @@ MODEL    = "gpt-4o"          # see note on model choice below
 DPI      = 220
 
 ## for csv
-COLS = ["event", "date", "division", "page_type", "rank", "name", "name_short",
-        "country", "medal", "previous_rank", "points_total",
-        "date_raw", "date_source", "_page"]
+# The pipeline's internal field names — fixed, because the extraction schema and
+# every audit check are written against them. What they are CALLED in the CSV,
+# and in what order, is decided once by the model (see LLM_HEADERS) on the first
+# page that survives triage, then reused unchanged for every other page.
+FIELDS = ["event", "date", "division", "page_type", "rank", "name", "name_short",
+          "country", "medal", "previous_rank", "points_total",
+          "date_raw", "date_source", "_page"]
+
+LLM_HEADERS  = True            # off = write the CSV with FIELDS as the header
+HEADER_MODEL = "gpt-4o"        # one call per document; worth the good model
 
 HINTS = ["draw sheet", "standings", "quarterfinal", "semifinal", "preliminaries"]
 PREFILTER = True
