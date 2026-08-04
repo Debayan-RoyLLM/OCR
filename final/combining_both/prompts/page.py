@@ -1,7 +1,10 @@
 """CALL 2, part 1 — what kind of page is this, and what does it say about itself.
 
-Steps 1 and 2: classification, then the three things that belong to every row on
-the page — event, division, date. Nothing here reads a competitor.
+OWNS STEPS 1-2 (with lettered sub-steps 2a, 2b). Nothing outside this file may
+use those numbers; see prompts/__init__.py for the whole map.
+
+Classification, then the three things that belong to every row on the page —
+event, division, date. Nothing here reads a competitor.
 
 Debugging note: STEP 2a is where a page that stacks a dozen weight classes gets
 its per-row division. Get that wrong and every row of the CSV inherits one label.

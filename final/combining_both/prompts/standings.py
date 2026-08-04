@@ -1,7 +1,10 @@
 """CALL 2, part 2 — where each boxer FINISHED. Fills the `standings` array.
 
-Steps 3 and 4: the Standings box on a draw sheet, the rows of a ranking table,
-and expanding the abbreviated names against the entry list.
+OWNS STEPS 3-4 (with branches 3a, 3b). Nothing outside this file may use those
+numbers; see prompts/__init__.py for the whole map.
+
+The Standings box on a draw sheet, the rows of a ranking table, and expanding
+the abbreviated names against the entry list.
 
 Debugging note: the two failures this text exists to prevent are ranks losing
 their ties (two bronzes are BOTH "3.") and the country code landing in a name

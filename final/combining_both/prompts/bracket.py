@@ -1,7 +1,10 @@
 """CALL 2, part 3 — who boxed WHOM. Fills the `bouts` array.
 
-Step 5: reading the chart itself rather than its summary box, plus the
-bout-results table that carries the same information as rows.
+OWNS STEP 5, the last one. Nothing outside this file may use that number; see
+prompts/__init__.py for the whole map.
+
+Reading the chart itself rather than its summary box, plus the bout-results
+table that carries the same information as rows.
 
 This is the hardest part of the whole pipeline and the part most worth editing
 in isolation. Three failure modes have all been seen for real, and each rule
@@ -15,8 +18,11 @@ below exists because of one of them:
                                  -> the frame arithmetic under CHECK YOUR WORK
 
 audit.py re-runs that same arithmetic on the answer, so a page that still comes
-up short is flagged rather than written out quietly.
+up short is flagged rather than written out quietly — and it now runs it from
+draw.py, the same module the worked examples below are generated from, so the
+rule the model is taught and the rule it is held to cannot drift apart.
 """
+from draw import example_table
 
 BRACKET_STEPS = """\
 STEP 5 — `bouts`: read the CHART, not the Standings box.
@@ -91,10 +97,7 @@ not N, is what you can see drawn. From it:
     real bouts      = N - 1         (a name on BOTH sides)
     byes            = frame - N     (a name on one side only)
 
-  "Number of boxers: 16" -> frame 16: 15 lines = 15 bouts + 0 byes
-  "Number of boxers: 12" -> frame 16: 15 lines = 11 bouts + 4 byes
-  "Number of boxers: 10" -> frame 16: 15 lines =  9 bouts + 6 byes
-  "Number of boxers: 5"  -> frame  8:  7 lines =  4 bouts + 3 byes
+""" + example_table() + """
 
 Count what you have written against all three numbers. A bracket of 10 has 15
 lines, not 7 — six of those lines are byes and they are still lines. Coming up

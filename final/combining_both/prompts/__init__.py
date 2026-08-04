@@ -14,6 +14,11 @@ they read off the page, and PROMPT is those three parts joined in order:
     standings.py  STEP 3-4   where each boxer FINISHED   -> `standings`
     bracket.py    STEP 5     who boxed WHOM              -> `bouts`
 
+The step numbers are global but the files are local, so THIS TABLE is the one
+place that says who owns what. Adding a step means taking the next number in
+your own file's range and widening it here; renumbering across files would undo
+the whole point of the split. Each module's docstring repeats its range.
+
 To change how brackets are read, edit bracket.py and nothing else. Importers see
 the same names as before — `from prompts import PROMPT, SCHEMA, ...` is unchanged.
 """

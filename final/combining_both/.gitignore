@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+
+# Cached extraction answers, keyed by page image + prompt + model (config.CACHE_DIR).
+# Safe to delete at any time; the next run just pays for those pages again.
+.ocr_cache/
