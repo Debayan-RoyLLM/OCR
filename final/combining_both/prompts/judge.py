@@ -4,12 +4,11 @@ Asked about every page that is not blank; nothing guesses ahead of it. Biased
 toward yes on purpose: a wrongly admitted page costs one extraction call, a
 wrongly dropped one loses rows for good.
 
-Must stay in step with STEP 1 in `page.py`. If the judge admits a page type the
-extractor then calls "other", you pay twice and get nothing back.
+Must stay in step with STEP 1 in page.py: a page type the judge admits and the
+extractor then calls "other" is paid for twice and returns nothing.
 
-The answer key is `worth_reading`, not `has_standings`: the judge admits ranking
-tables too, and a ranking table has no standings box. llm.llm_judge reads the
-same name — change one and you must change the other.
+The answer key is `worth_reading`, not `has_standings` — ranking tables are
+admitted too and have no standings box. llm.llm_judge reads the same name.
 """
 
 JUDGE_PROMPT = (

@@ -15,12 +15,8 @@ they read off the page, and PROMPT is those three parts joined in order:
     bracket.py    STEP 5     who boxed WHOM              -> `bouts`
 
 The step numbers are global but the files are local, so THIS TABLE is the one
-place that says who owns what. Adding a step means taking the next number in
-your own file's range and widening it here; renumbering across files would undo
-the whole point of the split. Each module's docstring repeats its range.
-
-To change how brackets are read, edit bracket.py and nothing else. Importers see
-the same names as before — `from prompts import PROMPT, SCHEMA, ...` is unchanged.
+place that says who owns what. Add a step by taking the next number in your own
+file's range and widening it here; do not renumber across files.
 """
 from prompts.bracket import BRACKET_STEPS
 from prompts.header import HEADER_PROMPT, HEADER_SCHEMA, header_prompt
@@ -29,7 +25,6 @@ from prompts.page import PAGE_STEPS
 from prompts.schema import SCHEMA
 from prompts.standings import STANDINGS_STEPS
 
-# One blank line between the parts, exactly as when they lived in one file.
 PROMPT = "\n".join([PAGE_STEPS, STANDINGS_STEPS, BRACKET_STEPS])
 
 __all__ = ["SCHEMA", "PROMPT", "JUDGE_PROMPT", "HEADER_SCHEMA", "HEADER_PROMPT",

@@ -3,10 +3,9 @@
 Asked ONCE per document, on the first page that survives the filter and yields
 rows, and cached for the whole run so page 40 can never disagree with page 1.
 
-The model does not choose what is extracted — that is fixed by schema.py. It
-chooses which of those fields become columns, what each is called, and in what
-order they read. pipeline.finalize() then checks that choice against the
-finished data and drops any column that turned out blank in every row.
+The model does not choose what is extracted — schema.py fixes that. It chooses
+which fields become columns, what each is called, and in what order.
+pipeline.finalize() then checks that choice against the finished data.
 """
 from config import ALL_FIELDS
 
@@ -115,11 +114,9 @@ Rules — read them all before answering:
 
 
 def header_prompt(samples: dict) -> str:
-    """HEADER_PROMPT plus real values already pulled out of this document.
-
-    Shown because the model kept naming fields after the columns it could SEE on
-    the page — calling `name_short` "seed" because the page has a Seed column.
-    Values it can read settle that: nobody calls "Bak Chorong" a seed."""
+    """HEADER_PROMPT plus real values pulled out of this document, so the model
+    names a field after what it HOLDS rather than after a label printed nearby —
+    nobody calls "Bak Chorong" a seed."""
     if not samples:
         return HEADER_PROMPT
 

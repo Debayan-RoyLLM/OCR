@@ -1,14 +1,13 @@
 """CALL 2, part 2 — where each boxer FINISHED. Fills the `standings` array.
 
-OWNS STEPS 3-4 (with branches 3a, 3b). Nothing outside this file may use those
-numbers; see prompts/__init__.py for the whole map.
+OWNS STEPS 3-4 (with branches 3a, 3b) — see prompts/__init__.py for the map.
 
 The Standings box on a draw sheet, the rows of a ranking table, and expanding
-the abbreviated names against the entry list.
+abbreviated names against the entry list.
 
-Debugging note: the two failures this text exists to prevent are ranks losing
-their ties (two bronzes are BOTH "3.") and the country code landing in a name
-column. audit.py checks for both.
+Debugging: the two failures this text prevents are ranks losing their ties (two
+bronzes are BOTH "3.") and the country code landing in a name column. audit.py
+checks for both.
 """
 
 STANDINGS_STEPS = """\

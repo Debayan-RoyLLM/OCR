@@ -4,3 +4,12 @@ __pycache__/
 # Cached extraction answers, keyed by page image + prompt + model (config.CACHE_DIR).
 # Safe to delete at any time; the next run just pays for those pages again.
 .ocr_cache/
+
+# Everything the pipeline writes: <name>.csv, <name>_bouts.csv, <name>_audit.csv.
+# They are outputs of a PDF and a prompt, and both of those ARE in the repo, so
+# committing them only makes diffs that say the model phrased something
+# differently this time. `git add -f` a CSV that is genuinely an input.
+*.csv
+
+# LibreOffice leaves these behind while a CSV is open.
+.~lock.*#

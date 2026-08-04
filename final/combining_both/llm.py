@@ -11,16 +11,15 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 from config import (BASE_URL, CACHE_DIR, HEADER_MODEL, HTTP_RETRIES,
-                    JUDGE_MODEL, MODEL, SHOW_TOKENS, api_key)
+                    JUDGE_MODEL, MAX_OUT, MAX_OUT_CEILING, MODEL, SHOW_TOKENS,
+                    api_key)
 from log import log
 from prompts import HEADER_SCHEMA, JUDGE_PROMPT, PROMPT, SCHEMA, header_prompt
 
-# Running tally, keyed by "<call kind> (<model>)". Filled from the `usage` block
-# the API returns — these are the real billed numbers, not an estimate.
+# Keyed "<call kind> (<model>)", filled from the API's own `usage` block, so
+# these are billed numbers rather than an estimate.
 USAGE = defaultdict(lambda: {"calls": 0, "in": 0, "out": 0, "cached": 0})
 _usage_lock = threading.Lock()          # several pages report at once
-
-MAX_OUT = 8000   # a full bracket is a lot of bouts on top of the standings
 
 
 def _record(label: str, model: str, usage: dict) -> None:
@@ -59,14 +58,13 @@ def usage_summary() -> str:
 
 
 def _session() -> requests.Session:
-    """One pooled session, retrying the failures that are not our fault.
+    """One pooled session, retrying 429 and 5xx with exponential backoff — those
+    arrive before the model generated anything, so replaying costs nothing.
 
-    A rate limit or a 502 is weather, not an answer: without this a single one
-    marked the whole page failed and lost its rows for the run. Backoff is
-    exponential, and only idempotent-by-nature POSTs to one endpoint are made
-    here, so replaying them is safe."""
+    read=0 because a read timeout is the opposite case: the answer may have been
+    generated and billed while we gave up waiting, and re-sending pays twice."""
     s = requests.Session()
-    retry = Retry(total=HTTP_RETRIES, backoff_factor=2,
+    retry = Retry(total=HTTP_RETRIES, read=0, backoff_factor=2,
                   status_forcelist=(429, 500, 502, 503, 504),
                   allowed_methods=frozenset({"POST"}),
                   raise_on_status=False)
@@ -105,22 +103,25 @@ def page_png_b64(page, dpi: int) -> str:
 
 
 def _cache_path(b64: str, instructions: str, model: str):
-    """Keyed by the page image, the exact instructions, and the model — the three
-    things that decide the answer. Change any of them and the key changes, so a
-    cached answer can never be one the current prompt would not have produced."""
+    """Keyed by the three things that decide the answer, so a cached answer can
+    never be one the current prompt would not have produced."""
     if not CACHE_DIR:
         return None
     key = hashlib.sha1(f"{model}\0{instructions}\0{b64}".encode()).hexdigest()
     return Path(CACHE_DIR) / f"{key}.json"
 
 
-def extract_page(b64: str, note: str = "", page_no=None) -> dict:
-    """Read one page. `note` is appended to the instructions on a second attempt:
-    the audit's own complaint about the first answer, told back to the model.
+def extract_page(b64: str, note: str = "", page_no=None,
+                 temperature: float = 0) -> dict:
+    """Read one page.
 
-    Answers are cached on disk. Editing a prompt is the whole point of this
-    project, and without a cache every edit re-pays for every page of the PDF
-    just to see what changed on one of them."""
+    `note` is the audit's complaint about the previous answer, appended to the
+    instructions on a re-read. `temperature` rises with the attempt number — see
+    pipeline.retry_note. It is not part of the cache key and needs not be: it
+    only ever moves in step with the note, which is.
+
+    Answers are cached on disk, so editing a prompt re-pays only for the pages
+    that edit actually changed."""
     instructions = PROMPT + note
     where = f"p{page_no}" if page_no else "page"
 
@@ -131,24 +132,29 @@ def extract_page(b64: str, note: str = "", page_no=None) -> dict:
 
     payload = {
         "model": MODEL,
-        "temperature": 0,
+        "temperature": temperature,
         "max_tokens": MAX_OUT,
         "messages": _image_message(b64, instructions, "high"),
         "response_format": SCHEMA,
     }
     body = _chat(payload, timeout=300, label="retry" if note else "extract")
 
-    # Truncation is a known, mechanical failure with a known, mechanical fix.
-    # Raising here used to cost the page its rows over something we can just
-    # ask again for, once, with more room.
+    # Cut off mid-JSON: ask again once with more room, capped at the ceiling.
+    # Doubling past the model's own output limit is a 400, which would turn a
+    # merely truncated page into a failed one.
     if body["choices"][0].get("finish_reason") == "length":
+        roomier = min(MAX_OUT * 2, MAX_OUT_CEILING)
+        if roomier <= MAX_OUT:
+            raise RuntimeError(f"output truncated at {MAX_OUT} tokens and "
+                               f"OCR_MAX_OUT_CEILING ({MAX_OUT_CEILING}) leaves "
+                               f"no room to ask again")
         log.warning(f"  ! {where}: output truncated at {MAX_OUT} tokens — "
-                    f"asking again with {MAX_OUT * 2}")
-        payload["max_tokens"] = MAX_OUT * 2
+                    f"asking again with {roomier}")
+        payload["max_tokens"] = roomier
         body = _chat(payload, timeout=600, label="retry" if note else "extract")
         if body["choices"][0].get("finish_reason") == "length":
-            raise RuntimeError(f"output still truncated at {MAX_OUT * 2} tokens "
-                               f"— raise MAX_OUT in llm.py")
+            raise RuntimeError(f"output still truncated at {roomier} tokens "
+                               f"— raise OCR_MAX_OUT")
 
     out = body["choices"][0]["message"]["content"]
     if cached:
@@ -158,11 +164,11 @@ def extract_page(b64: str, note: str = "", page_no=None) -> dict:
 
 
 def llm_headers(b64: str, samples: dict = None) -> list:
-    """Asked once per document, on a page we have already rendered and extracted.
-    Gets that page's image AND a few values already pulled off it, so it names
-    the columns after what they hold. Returns [(field, header)] in the order it
-    wants them. Fails OPEN: on any error return [], and the caller falls back to
-    the internal field names rather than losing the run's output."""
+    """Name the CSV columns. Asked once per document, on a page already
+    extracted, and given a few real values so it names columns after what they
+    hold. Returns [(field, header)] in the order it wants them.
+
+    Fails OPEN: [] on any error, and the caller falls back to the field names."""
     payload = {
         "model": HEADER_MODEL,
         "temperature": 0,
@@ -180,12 +186,11 @@ def llm_headers(b64: str, samples: dict = None) -> list:
 
 
 def llm_judge(b64: str) -> tuple:
-    """The page filter. Reads every non-blank page and says whether it is worth
-    an extraction call. Returns (keep, why). Fails OPEN — a broken judge must
-    never be the reason a real draw sheet goes missing.
+    """The page filter: is this page worth an extraction call? (keep, why).
 
-    Takes the rendered image rather than the fitz page: rendering happens under
-    a lock in the caller, because PyMuPDF documents are not thread-safe."""
+    Fails OPEN — a broken judge must not be why a real draw sheet goes missing.
+    Takes the rendered image, not the fitz page: rendering happens under the
+    caller's lock."""
     payload = {
         "model": JUDGE_MODEL,
         "temperature": 0,

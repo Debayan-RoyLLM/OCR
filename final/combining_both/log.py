@@ -1,17 +1,13 @@
 """Where the run talks to you.
 
-Two jobs, both of which `print` could not do:
+Two jobs `print` could not do: a level, so a run can be made quieter from the
+command line; and ORDER — pages are read several at a time (config.WORKERS) and
+four threads printing into one terminal interleave into nonsense. A worker's
+output is captured into a buffer and replayed when that page's turn comes, so a
+parallel run reads like a serial one and still prints as it goes.
 
-  1. a level, so a run can be made quieter or noisier from the command line
-     instead of by editing the code that prints;
-  2. ORDER. Pages are read several at a time (config.WORKERS), and four threads
-     printing into one terminal interleave into nonsense. A worker's output is
-     captured into a buffer instead, and each buffer is replayed the moment that
-     page's turn comes round — so a parallel run reads exactly like a serial one
-     and still prints as it goes, rather than all at the end.
-
-The format is bare "%(message)s": every existing message already carries its own
-"  " indent or "  ! " marker, and those conventions are worth keeping.
+The format is bare "%(message)s": messages carry their own "  " indent and
+"  ! " marker.
 """
 import logging
 import sys
@@ -22,10 +18,8 @@ log = logging.getLogger("ocr")
 
 
 class _Stdout(logging.StreamHandler):
-    """Whatever sys.stdout is NOW, not whatever it was at import.
-
-    StreamHandler holds the stream it was built with, which quietly ignores any
-    later redirect — a notebook, a test capturing output, a `> run.log`."""
+    """Whatever sys.stdout is NOW. StreamHandler holds the stream it was built
+    with, which ignores a later redirect — a notebook, a test, a `> run.log`."""
 
     @property
     def stream(self):
@@ -63,12 +57,10 @@ def setup(verbosity: int = 0) -> None:
 @contextmanager
 def collected(active: bool = True):
     """Everything logged by THIS thread inside the block lands in the yielded
-    list instead of the terminal. Nothing is lost — `replay` prints it later, in
-    whatever order the caller wants.
+    list instead of the terminal; `replay` prints it later.
 
-    active=False yields None and captures nothing: the thread keeps talking
-    straight to the terminal. That is the single-worker case, where there is no
-    second thread to interleave with and buffering would only add a delay."""
+    active=False yields None and captures nothing — the single-worker case,
+    where there is nothing to interleave with and buffering only adds delay."""
     if not active:
         yield None
         return
@@ -80,13 +72,12 @@ def collected(active: bool = True):
 
 
 def replay(buf) -> None:
-    """Print a buffer from `collected`. None means it was never captured — it
-    has already been printed — so there is nothing to do."""
+    """Print a buffer from `collected`. None means it was never captured, so it
+    has already been printed."""
     for record in buf or ():
         _console.emit(record)
 
 
-# A sane default the moment anything imports this, so a module used from a
-# notebook or a test — anywhere script.py's flag parsing never runs — still
-# talks. script.py calls setup() again with whatever the flags asked for.
+# So anything imported from a notebook or a test talks without script.py's flag
+# parsing having run. script.py calls setup() again with the real verbosity.
 setup(0)

@@ -1,0 +1,16 @@
+# pip install -r requirements.txt
+#
+# Four direct dependencies and nothing else. Lower bounds are the versions the
+# pipeline actually needs a feature from; upper bounds are majors that have not
+# been tested against it.
+
+# Rendering pages to PNG and reading the blank-page check off the page text.
+PyMuPDF>=1.23,<2
+
+# The whole tabulate/clean/write half of pipeline.py. 2.0 for the nullable
+# "string" and Int64 dtypes and for to_datetime(format="mixed").
+pandas>=2.0
+
+# The HTTP client and the retry policy mounted on its session (llm._session).
+requests>=2.31
+urllib3>=2.0

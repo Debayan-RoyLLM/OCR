@@ -1,26 +1,20 @@
 """CALL 2, part 3 — who boxed WHOM. Fills the `bouts` array.
 
-OWNS STEP 5, the last one. Nothing outside this file may use that number; see
-prompts/__init__.py for the whole map.
+OWNS STEP 5, the last one — see prompts/__init__.py for the map.
 
-Reading the chart itself rather than its summary box, plus the bout-results
-table that carries the same information as rows.
+Reads the chart itself rather than its summary box, plus the bout-results table
+that carries the same information as rows. Three rules below each answer a real
+failure:
 
-This is the hardest part of the whole pipeline and the part most worth editing
-in isolation. Three failure modes have all been seen for real, and each rule
-below exists because of one of them:
-
-  * rounds shifted by one column, because a first column padded with byes did
-    not look like a round        -> "count BACKWARDS, from the right"
+  * rounds shifted by a column, when a first column of byes did not look like a
+    round                        -> "count BACKWARDS, from the right"
   * a pair read across two boxes, giving a winner who was in neither
                                  -> "enclosed together in their own drawn BOX"
   * a whole column silently dropped
                                  -> the frame arithmetic under CHECK YOUR WORK
 
-audit.py re-runs that same arithmetic on the answer, so a page that still comes
-up short is flagged rather than written out quietly — and it now runs it from
-draw.py, the same module the worked examples below are generated from, so the
-rule the model is taught and the rule it is held to cannot drift apart.
+The worked examples come from draw.py, which is also what audit.py checks the
+answer against, so what the model is taught and what it is held to cannot drift.
 """
 from draw import example_table
 
