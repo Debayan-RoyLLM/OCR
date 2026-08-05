@@ -9,6 +9,9 @@ output.csv defaults to the pdf's name with a .csv extension
 
 CSVs are written to output/ under the directory you run from.
 """
+
+__author__ = "Debayan"
+
 import sys
 from pathlib import Path
 

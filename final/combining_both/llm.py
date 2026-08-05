@@ -87,27 +87,45 @@ def _chat(payload: dict, timeout: int, label: str = "call") -> dict:
     return body
 
 
-def _image_message(b64: str, text: str, detail: str) -> list:
-    return [{
-        "role": "user",
-        "content": [
-            {"type": "image_url",
-             "image_url": {"url": f"data:image/png;base64,{b64}", "detail": detail}},
-            {"type": "text", "text": text},
-        ],
-    }]
+def _image_message(b64: str, text: str, detail: str, system: str = "") -> list:
+    """Static instructions first, image second, page-specific text last.
+
+    The order is the whole point. Prompt caching matches a PREFIX — a run of
+    tokens from position 0 — so identical text sitting BEHIND the image is
+    unreachable, and every page re-pays for it. Instructions in front make one
+    prefix that every page of the document shares.
+
+    The image stays ahead of `text` for the same reason at a smaller scale: on a
+    re-read only the audit's note changes, so leaving it at the tail keeps the
+    image itself inside the match. Text in front of the image would win the
+    cross-page prefix and lose the per-page one."""
+    content = [{"type": "image_url",
+                "image_url": {"url": f"data:image/png;base64,{b64}",
+                              "detail": detail}}]
+    if text:
+        content.append({"type": "text", "text": text})
+    head = [{"role": "system", "content": system}] if system else []
+    return head + [{"role": "user", "content": content}]
 
 
 def page_png_b64(page, dpi: int) -> str:
     return base64.b64encode(page.get_pixmap(dpi=dpi).tobytes("png")).decode()
 
 
+# Bump when the SHAPE of the request changes rather than its text — message
+# roles and order, image detail, anything the key below cannot see. Editing the
+# prompt already changes `instructions`; restructuring it does not, and without
+# this a run would quietly answer from cache and look like it changed nothing.
+PROMPT_REV = 2
+
+
 def _cache_path(b64: str, instructions: str, model: str):
-    """Keyed by the three things that decide the answer, so a cached answer can
-    never be one the current prompt would not have produced."""
+    """Keyed by the things that decide the answer, so a cached answer can never
+    be one the current prompt would not have produced."""
     if not CACHE_DIR:
         return None
-    key = hashlib.sha1(f"{model}\0{instructions}\0{b64}".encode()).hexdigest()
+    key = hashlib.sha1(
+        f"{PROMPT_REV}\0{model}\0{instructions}\0{b64}".encode()).hexdigest()
     return Path(CACHE_DIR) / f"{key}.json"
 
 
@@ -115,8 +133,8 @@ def extract_page(b64: str, note: str = "", page_no=None,
                  temperature: float = 0) -> dict:
     """Read one page.
 
-    `note` is the audit's complaint about the previous answer, appended to the
-    instructions on a re-read. `temperature` rises with the attempt number — see
+    `note` is the audit's complaint about the previous answer, sent after the
+    image on a re-read. `temperature` rises with the attempt number — see
     pipeline.retry_note. It is not part of the cache key and needs not be: it
     only ever moves in step with the note, which is.
 
@@ -134,7 +152,11 @@ def extract_page(b64: str, note: str = "", page_no=None,
         "model": MODEL,
         "temperature": temperature,
         "max_tokens": MAX_OUT,
-        "messages": _image_message(b64, instructions, "high"),
+        # PROMPT rides as the system message so it is the same prefix on every
+        # page and is billed at the cached rate after the first; only `note`
+        # varies per call. `instructions` above stays the two joined, because
+        # that is what identifies the answer for the disk cache.
+        "messages": _image_message(b64, note, "high", system=PROMPT),
         "response_format": SCHEMA,
     }
     body = _chat(payload, timeout=300, label="retry" if note else "extract")
