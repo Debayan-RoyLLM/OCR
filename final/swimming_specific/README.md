@@ -1,8 +1,8 @@
 # Swimming results OCR
 
 Reads a meet result PDF page by page with a vision model and writes two CSVs —
-one row per swimmer or relay team (results) and one row per relay leg — plus an
-audit file listing every page whose numbers still did not add up.
+one for the individual events and one for the relays — plus an audit file
+listing every page whose numbers still did not add up.
 
 Written against the output of meet-management software (Splash Meet Manager,
 Hy-Tek), where a page is a stack of **event blocks**: a heading naming the event,
@@ -57,8 +57,8 @@ Output lands in `output/`:
 
 | File | Contents |
 |---|---|
-| `<name>.csv` | Results — one row per swimmer, or per team on a relay |
-| `<name>_relays.csv` | Relay legs — one row per swimmer per relay |
+| `<name>.csv` | Individual events — one row per swimmer |
+| `<name>_relays.csv` | Relay events — one row per swimmer per relay, carrying the team's rank, time and status alongside the leg |
 | `<name>_audit.csv` | Unresolved complaints, joinable to either file on `page` |
 
 Columns are settled **per document**, so each PDF in a batch keeps its own
@@ -135,9 +135,10 @@ that returned data).
 | | `one_page(i):59` | Per-page worker: probe → decide → render → read_page. **Never raises** | A page shows "FAILED" |
 | | `in_page_order():93` | `pool.map` generator; `WORKERS=1` skips the pool | Output interleaved / out of order |
 | | `HEADING:187` | The five fields a block's rows inherit from its heading | A row has the wrong event or phase |
-| | `unpack(d):194` | **Flattens `blocks` into (result rows, relay legs)**, each carrying its block's heading; drops entries that name nobody | Rows silently disappearing; an event's fields not reaching its rows |
+| | `TEAM_KEYS:194` | A relay entry minus `name` — stamped onto each of that team's swimmers | A relay row missing its time or its Q |
+| | `unpack(d):201` | **Splits `blocks` by event kind**: an individual block's rows go to the results list, a relay block goes whole to the relay list, its placing copied onto each swimmer. A team with no members line still yields one row | A relay leaking into the results file; a DNS team vanishing; rows silently disappearing |
 | | `last_dated(d):218` | `(date_iso, date_raw)` of the last dated block on the page | The date carry picking the wrong block |
-| | `check():229` | Fans out to `audit()` + `audit_relays()`, both over **blocks**, not flattened rows | — |
+| | `check():247` | Fans out to `audit()` + `audit_relays()`, both over **blocks**, not flattened rows, and gated on the blocks rather than on unpack's output — a relay page yields no result rows at all | Audits skipped on an all-relay page |
 | | `read_page():241` | **Extract → audit → retry loop.** Keeps a re-read only if `severity` drops | Retries not firing; wrong answer kept; `'other'` pages |
 | | `retry_temp():292` | `min(STEP*(n-1), MAX)` → 0, 0.2, 0.4 | Re-reads return identical answers |
 | | `retry_note():297` | The complaint text handed back to the model, with the four usual causes spelled out; varies by attempt so the cache key changes | Retries served from cache; retry prompt wording |
@@ -218,6 +219,7 @@ that returned data).
 | The record holder appears as a competitor | [prompts/page.py](prompts/page.py) STEP 2c |
 | A continued event has the wrong date | [pipeline.py:96](pipeline.py#L96) `carry` → [pipeline.py:218](pipeline.py#L218) `last_dated` |
 | Relay members missing or in one cell | [prompts/relay.py](prompts/relay.py) → [audit.py:223](audit.py#L223) |
+| A relay showing up in the individual CSV | [pipeline.py:201](pipeline.py#L201) `unpack` → `audit._multiplier` |
 | Values wrong on the page | the relevant `prompts/*.py` |
 | Cost too high | [config.py:69](config.py#L69) `PREFILTER`, [config.py:57](config.py#L57) `RETRY_ON_AUDIT` |
 | Crash / truncation / 429 | [llm.py](llm.py) |

@@ -1,6 +1,7 @@
 """Page loop, row assembly, and CSV output."""
 import re
 import threading
+from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import NamedTuple
@@ -8,7 +9,7 @@ from typing import NamedTuple
 import fitz  # pip install pymupdf
 import pandas as pd
 
-from audit import audit, audit_relays, seconds, severity
+from audit import _multiplier, audit, audit_relays, seconds, severity
 from config import (ALL_FIELDS, CORE_FIELDS, DPI, DROP_BLANK, DROP_BY_JUDGE,
                     FIELDS, FILL_BACK, KEEP_UNCHOSEN, KEPT_BY_JUDGE,
                     LLM_HEADERS, RELAY_FIELDS, RETRY_ON_AUDIT, RETRY_TEMP_MAX,
@@ -189,12 +190,13 @@ HEADING = ("event_no", "discipline", "gender", "age_group", "phase")
 
 RESULT_KEYS = ("rank", "name", "team", "time_raw", "status", "remark",
                "record_set")
-LEG_KEYS = ("rank", "team", "leg", "swimmer")
 
-# `status` is not among them: Q, R and DNS belong to the TEAM, and the team's
-# own row in `results` already carries it. unpack() copies it across rather than
-# asking the model for it a second time — one fewer thing to read wrong, and the
-# two files cannot end up disagreeing about who qualified.
+# A relay team's entry, minus `name` — on a relay the competitor IS the team.
+# It is stamped onto each of that team's swimmers, so the placing, the time and
+# the Q/R sit on the same row as the leg. Read off the team's own result row
+# rather than asked for a second time: one fewer thing for the model to get
+# wrong, and no way for the two files to disagree about who qualified.
+TEAM_KEYS = ("rank", "team", "time_raw", "status", "remark", "record_set")
 
 
 def unpack(d):
@@ -208,19 +210,38 @@ def unpack(d):
         head = {k: b.get(k) for k in HEADING}
         head["date"], head["date_raw"] = b.get("date_iso"), b.get("date_raw")
 
-        for r in b.get("results") or []:
-            if not (r.get("name") or r.get("team")):
-                continue
-            rows.append({**head, **{k: r.get(k) for k in RESULT_KEYS}})
+        entries = [r for r in b.get("results") or []
+                   if r.get("name") or r.get("team")]
 
-        status = {(r.get("team") or "").strip(): r.get("status")
-                  for r in b.get("results") or []}
+        if not _multiplier(b.get("discipline")):
+            for r in entries:
+                rows.append({**head, **{k: r.get(k) for k in RESULT_KEYS}})
+            continue
+
+        # A relay goes to the relay file whole. Each team's placing is stamped
+        # onto its own swimmers, so one row says who swam which leg for a team
+        # that finished where, in what time — no join between the two files.
+        swimmers = defaultdict(list)
         for l in b.get("relay_legs") or []:
-            if not l.get("swimmer"):
-                continue
-            leg = {**head, **{k: l.get(k) for k in LEG_KEYS}}
-            leg["status"] = status.get((leg.get("team") or "").strip())
-            legs.append(leg)
+            if l.get("swimmer"):
+                swimmers[(l.get("team") or "").strip()].append(l)
+
+        for r in entries:
+            placing = {**head, **{k: r.get(k) for k in TEAM_KEYS}}
+            got = swimmers.pop((r.get("team") or "").strip(), [])
+            # A DNS team prints no members line. Its entry is still the result
+            # of that event and must not vanish along with the swimmers it
+            # never had — one row, the placing, no leg.
+            for l in got or [{}]:
+                legs.append({**placing, "leg": l.get("leg"),
+                             "swimmer": l.get("swimmer")})
+
+        # Members belonging to no ranked entry. audit_relays complains about
+        # these; dropping them here as well would lose them twice over.
+        for team, orphans in swimmers.items():
+            for l in orphans:
+                legs.append({**head, "team": team, "rank": l.get("rank"),
+                             "leg": l.get("leg"), "swimmer": l.get("swimmer")})
 
     return rows, legs
 
@@ -236,14 +257,18 @@ def last_dated(d):
     return got
 
 
-def check(page_no, d, rows, legs, quiet=False):
+def check(page_no, d, quiet=False):
     """Both audits read the BLOCKS, not the flattened rows: every check is per
-    event, and flattening is exactly what loses the event boundaries."""
+    event, and flattening is exactly what loses the event boundaries.
+
+    Asked of the blocks rather than of unpack's output for the same reason — a
+    relay page yields no rows at all now, and gating `audit` on that would skip
+    the rank-and-time arithmetic on exactly the events that need it."""
     blocks = d.get("blocks") or []
     warns = []
-    if rows:
+    if any(b.get("results") for b in blocks):
         warns += audit(page_no, blocks, quiet=quiet)
-    if legs:
+    if any(b.get("relay_legs") for b in blocks):
         warns += audit_relays(page_no, blocks, quiet=quiet)
     return warns
 
@@ -267,7 +292,7 @@ def read_page(page_no, png) -> Read:
         return Read(d, [], [], [])
 
     # Quiet until the end: only the surviving read gets printed.
-    best = Read(d, rows, legs, check(page_no, d, rows, legs, quiet=True))
+    best = Read(d, rows, legs, check(page_no, d, quiet=True))
 
     tried = []                   # what each re-read so far still got wrong
     for attempt in range(1, RETRY_ON_AUDIT + 1):
@@ -283,7 +308,7 @@ def read_page(page_no, png) -> Read:
             log.warning(f"  ! retry failed ({e}) — keeping the best answer so far")
             break
 
-        warns2 = check(page_no, d2, rows2, legs2, quiet=True)
+        warns2 = check(page_no, d2, quiet=True)
         tried.append(list(warns2))
         if not (rows2 or legs2) or severity(warns2) >= severity(best.warns):
             log.info(f"  no better ({len(warns2)} complaints, weight "
@@ -484,8 +509,8 @@ def clean_dates(df):
 TEXT_COLS = {
     "results": ("event", "discipline", "gender", "age_group", "phase", "name",
                 "team", "time_raw", "status", "remark", "date_raw", "date_source"),
-    "relays":  ("event", "discipline", "gender", "phase", "team", "swimmer",
-                "status", "date_raw", "date_source"),
+    "relays":  ("event", "discipline", "gender", "phase", "team", "time_raw",
+                "status", "remark", "swimmer", "date_raw", "date_source"),
 }
 
 
@@ -503,17 +528,17 @@ def build_table(records, kind):
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce").astype("Int64")
 
-    # Both tables carry it — the relays' copied off the team's result row — so
-    # "dns" and "DNS" cannot end up as two different values across the two files.
+    # Both tables carry these — a relay row holds its team's time and status —
+    # so the two files cannot spell the same value two different ways.
     if "status" in df.columns:
         df["status"] = df["status"].str.upper()
+    # "1:54.80" -> 114.80. From audit.seconds, so the column in the CSV and the
+    # number the audit compared ranks against cannot disagree.
+    df["time_sec"] = df["time_raw"].map(seconds).astype("Float64")
+    if "record_set" in df.columns:
+        df["record_set"] = df["record_set"].astype("boolean")
 
     if kind == "results":
-        # "1:54.80" -> 114.80. From audit.seconds, so the column in the CSV and
-        # the number the audit compared ranks against cannot disagree.
-        df["time_sec"] = df["time_raw"].map(seconds).astype("Float64")
-        if "record_set" in df.columns:
-            df["record_set"] = df["record_set"].astype("boolean")
         return df.sort_values(["_page", "event_no", "rank"], na_position="last")
 
     return df.sort_values(["_page", "event_no", "rank", "leg"],
@@ -600,8 +625,11 @@ def run(pdf_path, out_csv, only=None):
         relays_csv = Path(out_csv).with_name(Path(out_csv).stem + "_relays.csv")
         btable = build_table(all_legs, "relays")
         bf = write_csv(btable, stats["layout"], RELAY_FIELDS, relays_csv, "relays")
-        log.info(f"relay teams: {btable.groupby(['_page', 'event_no']).ngroups} "
-                 f"blocks, {len(btable)} legs")
+        log.info(f"relay events: {btable['event_no'].nunique()} | "
+                 f"teams: {btable['team'].nunique()} | "
+                 f"{int(btable['swimmer'].notna().sum())} legs swum, "
+                 f"{int(btable['swimmer'].isna().sum())} team(s) with no members "
+                 f"line")
 
     log.info("")
     write_audit(stats, out_csv)

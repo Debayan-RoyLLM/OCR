@@ -43,11 +43,16 @@ HEADER_SCHEMA = {
 }
 
 HEADER_PROMPT = """\
-A whole document of SWIMMING RESULTS is being turned into TWO CSVs, and this page
-is a sample of it. One file has a row per swimmer's PLACING, the other a row per
-RELAY LEG. Their fields are below; the MEANING of each is fixed — you are only
-choosing what to call it at the top of the file. Fields the two files share are
-named once and used in both.
+A whole document of SWIMMING RESULTS is being turned into TWO CSVs, split by the
+KIND of event, and this page is a sample of it:
+
+  the first  — INDIVIDUAL events, one row per swimmer
+  the second — RELAY events, one row per swimmer per relay, carrying the team's
+               placing and time as well as which leg that swimmer swam
+
+A relay appears only in the second file, never the first. Their fields are below;
+the MEANING of each is fixed — you are only choosing what to call it at the top
+of the file. Fields the two files share are named once and used in both.
 
   field          what the value always is        keep this name unless...
   event          the MEET's name — "38th National Games 2025"     ("meet")
@@ -58,9 +63,10 @@ named once and used in both.
   phase          "Prelim" / "Final" / "Semifinal", or empty       ("round")
   date           the session date as YYYY-MM-DD
   rank           the swimmer's or team's finishing place          ("place", "pos")
-  name           the swimmer's full name         ("swimmer", "athlete")
+  name           the swimmer's full name — INDIVIDUAL events only
   team           the state, unit or club swum for ("state", "club", "unit")
   time_raw       the finishing time as printed — "1:54.80"        ("time")
+                 on a relay this is the TEAM's time
   time_sec       that same time in seconds — 114.80
   status         "Q", "R", "DNS", "DSQ", "DNF", or empty
   remark         a disqualification reason — "Early Start"        ("reason")
@@ -84,6 +90,9 @@ Leave a field out when the page shows it is never filled:
   - no record flag (NMR) under any swim    -> leave out record_set
   - the page shows only individual events,
     no relays                              -> leave out leg, swimmer
+  - the page shows only relays             -> leave out name; a relay entry is
+                                              a team, and no swimmer is named
+                                              outside the members line
   - nothing on the page is dated           -> leave out date, date_raw, date_source
 
 Leave a field out ALSO when it is filled but tells a reader of this file nothing

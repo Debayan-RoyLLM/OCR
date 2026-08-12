@@ -25,14 +25,21 @@ DPI = int(os.getenv("OCR_DPI", "220"))
 # Internal field names. The extraction schema and every audit check are written
 # against these; what they are CALLED in the CSV is decided by LLM_HEADERS.
 #
-# One row per swimmer, or per TEAM on a relay -> <output>.csv
+# INDIVIDUAL events only, one row per swimmer -> <output>.csv
 FIELDS = ["event", "event_no", "discipline", "gender", "phase",
           "date", "rank", "name", "team", "time_raw", "time_sec",
           "status", "date_raw", "date_source", "_page"]
 
-# Who swam which leg, one row per relay swimmer -> <output>_relays.csv
+# RELAY events, whole. One row per swimmer per relay, carrying the team's
+# placing as well as the leg -> <output>_relays.csv
+#
+# A relay never appears in FIELDS' file. Its entry is a team, not a person, so
+# in the individual table it would be a row with no name; and its swimmers are
+# four to a placing, so it cannot be one row either. Splitting it across both
+# files would mean joining them to answer the simplest question about a relay.
 RELAY_FIELDS = ["event", "event_no", "discipline", "gender", "phase", "date",
-                "rank", "team", "leg", "swimmer", "status",
+                "rank", "team", "time_raw", "time_sec", "status",
+                "leg", "swimmer",
                 "date_raw", "date_source", "_page"]
 
 # Named in one header call, so a shared field gets the same name in both files.
