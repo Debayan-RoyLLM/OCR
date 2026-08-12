@@ -1,0 +1,309 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "31-01-2025",
+  "date_iso": "2025-01-31",
+  "date_source": "Event 16 heading",
+  "blocks": [
+    {
+      "event_no": 16,
+      "discipline": "200m Backstroke",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "31-01-2025",
+      "date_iso": "2025-01-31",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "2:03.32",
+      "record_holder": "Nithik Nathella",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-31",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Rishabh Das",
+          "team": "Maharashtra",
+          "time_raw": "2:03.34",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Nithik Nathella",
+          "team": "Tamilnadu",
+          "time_raw": "2:04.75",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Devansh Parmar",
+          "team": "Gujarat",
+          "time_raw": "2:06.56",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Akash Mani",
+          "team": "Karnataka",
+          "time_raw": "2:06.87",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Mongam Theerdhu Samadev",
+          "team": "Andhra Pradesh",
+          "time_raw": "2:09.82",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Aman Abhijit Sungar",
+          "team": "Karnataka",
+          "time_raw": "2:11.13",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Advait Page",
+          "team": "Madhya Pradesh",
+          "time_raw": "2:12.37",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Sarath Mogili",
+          "team": "Andhra Pradesh",
+          "time_raw": "2:14.02",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 17,
+      "discipline": "50m Freestyle",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "31-01-2025",
+      "date_iso": "2025-01-31",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "26.42",
+      "record_holder": "Rujuta Khade",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-31",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Dhinidhi Desinghu",
+          "team": "Karnataka",
+          "time_raw": "26.96",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Avantika Chawan",
+          "team": "Maharashtra",
+          "time_raw": "27.28",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Nina Venkatesh",
+          "team": "Karnataka",
+          "time_raw": "27.34",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Deeksha Sivakumar",
+          "team": "Tamilnadu",
+          "time_raw": "27.75",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Aditi Satish Hegde",
+          "team": "Maharashtra",
+          "time_raw": "27.82",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Jahnabi Kashyap",
+          "team": "Assam",
+          "time_raw": "28.20",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Shristi Upadhaya",
+          "team": "Odisha",
+          "time_raw": "28.73",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Dibyashree Hazarika",
+          "team": "Assam",
+          "time_raw": "28.92",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 18,
+      "discipline": "50m Freestyle",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "31-01-2025",
+      "date_iso": "2025-01-31",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "22.82",
+      "record_holder": "Virdhawal Khade",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-31",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Mihir Ambre",
+          "team": "Maharashtra",
+          "time_raw": "23.29",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Srihari Nataraj",
+          "team": "Karnataka",
+          "time_raw": "23.37",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Joshua Thomas",
+          "team": "Tamilnadu",
+          "time_raw": "23.40",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Benedicton Rohit",
+          "team": "Tamilnadu",
+          "time_raw": "23.65",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Heer Gitesh Shah",
+          "team": "Maharashtra",
+          "time_raw": "23.72",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Heer Pitroda",
+          "team": "Gujarat",
+          "time_raw": "24.14",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Vikkas P",
+          "team": "SSCB",
+          "time_raw": "24.15",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Arjun Singh",
+          "team": "Haryana",
+          "time_raw": "24.51",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    }
+  ]
+}

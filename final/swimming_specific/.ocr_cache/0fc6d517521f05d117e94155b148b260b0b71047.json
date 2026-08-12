@@ -1,0 +1,354 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "01-02-2025",
+  "date_iso": "2025-02-01",
+  "date_source": "Event 24 heading",
+  "blocks": [
+    {
+      "event_no": 24,
+      "discipline": "4 x 200m Freestyle",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Results",
+      "date_raw": "01-02-2025",
+      "date_iso": "2025-02-01",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "8:49.74",
+      "record_holder": "Karnataka",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-11-01",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Karnataka",
+          "team": "Karnataka",
+          "time_raw": "8:54.87",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Maharashtra",
+          "team": "Maharashtra",
+          "time_raw": "9:09.37",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Tamilnadu",
+          "team": "Tamilnadu",
+          "time_raw": "9:14.27",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Odisha",
+          "team": "Odisha",
+          "time_raw": "9:28.36",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Delhi",
+          "team": "Delhi",
+          "time_raw": "9:45.35",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Kerala",
+          "team": "Kerala",
+          "time_raw": "10:02.52",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": null,
+          "name": "Bengal",
+          "team": "Bengal",
+          "time_raw": null,
+          "status": "DNS",
+          "remark": null,
+          "record_set": false
+        }
+      ],
+      "relay_legs": [
+        {
+          "rank": 1,
+          "team": "Karnataka",
+          "leg": 1,
+          "swimmer": "Shirin"
+        },
+        {
+          "rank": 1,
+          "team": "Karnataka",
+          "leg": 2,
+          "swimmer": "Shalini R Dixit"
+        },
+        {
+          "rank": 1,
+          "team": "Karnataka",
+          "leg": 3,
+          "swimmer": "Meenakshi Menon"
+        },
+        {
+          "rank": 1,
+          "team": "Karnataka",
+          "leg": 4,
+          "swimmer": "Dhinidhi Desinghu"
+        },
+        {
+          "rank": 2,
+          "team": "Maharashtra",
+          "leg": 1,
+          "swimmer": "Anvi Deshwal"
+        },
+        {
+          "rank": 2,
+          "team": "Maharashtra",
+          "leg": 2,
+          "swimmer": "Saanvi Deshwal"
+        },
+        {
+          "rank": 2,
+          "team": "Maharashtra",
+          "leg": 3,
+          "swimmer": "Dhirti Ahirwal"
+        },
+        {
+          "rank": 2,
+          "team": "Maharashtra",
+          "leg": 4,
+          "swimmer": "Aditi Satish Hegde"
+        },
+        {
+          "rank": 3,
+          "team": "Tamilnadu",
+          "leg": 1,
+          "swimmer": "Deeksha Sivakumar"
+        },
+        {
+          "rank": 3,
+          "team": "Tamilnadu",
+          "leg": 2,
+          "swimmer": "Adwika G Nair"
+        },
+        {
+          "rank": 3,
+          "team": "Tamilnadu",
+          "leg": 3,
+          "swimmer": "Dhayanitha S"
+        },
+        {
+          "rank": 3,
+          "team": "Tamilnadu",
+          "leg": 4,
+          "swimmer": "Shreenithi Natesan"
+        },
+        {
+          "rank": 4,
+          "team": "Odisha",
+          "leg": 1,
+          "swimmer": "Pratyasa Ray"
+        },
+        {
+          "rank": 4,
+          "team": "Odisha",
+          "leg": 2,
+          "swimmer": "Shristi Upadhaya"
+        },
+        {
+          "rank": 4,
+          "team": "Odisha",
+          "leg": 3,
+          "swimmer": "Anshika Aradhna Sahoo"
+        },
+        {
+          "rank": 4,
+          "team": "Odisha",
+          "leg": 4,
+          "swimmer": "Divyanka Dibyajyoti Pradhan"
+        },
+        {
+          "rank": 5,
+          "team": "Delhi",
+          "leg": 1,
+          "swimmer": "Awesome"
+        },
+        {
+          "rank": 5,
+          "team": "Delhi",
+          "leg": 2,
+          "swimmer": "Hema"
+        },
+        {
+          "rank": 5,
+          "team": "Delhi",
+          "leg": 3,
+          "swimmer": "Titiksha Rawat"
+        },
+        {
+          "rank": 5,
+          "team": "Delhi",
+          "leg": 4,
+          "swimmer": "Bhavya Sachdeva"
+        },
+        {
+          "rank": 6,
+          "team": "Kerala",
+          "leg": 1,
+          "swimmer": "Nirmala. R"
+        },
+        {
+          "rank": 6,
+          "team": "Kerala",
+          "leg": 2,
+          "swimmer": "Dakshina Bijo P"
+        },
+        {
+          "rank": 6,
+          "team": "Kerala",
+          "leg": 3,
+          "swimmer": "Bhadra Sudevan S"
+        },
+        {
+          "rank": 6,
+          "team": "Kerala",
+          "leg": 4,
+          "swimmer": "Avanthika Pradeep"
+        }
+      ]
+    },
+    {
+      "event_no": 25,
+      "discipline": "1500m Freestyle",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Results",
+      "date_raw": "02-02-2025",
+      "date_iso": "2025-02-02",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "17:40.82",
+      "record_holder": "Bhavya Sachdeva",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-11-02",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Bhavya Sachdeva",
+          "team": "Delhi",
+          "time_raw": "17:42.81",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Aditi N Mulay",
+          "team": "Karnataka",
+          "time_raw": "18:11.92",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Shirin",
+          "team": "Karnataka",
+          "time_raw": "18:14.98",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Aditi Satish Hegde",
+          "team": "Maharashtra",
+          "time_raw": "18:31.33",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Subhranshini Priyadarshini",
+          "team": "Assam",
+          "time_raw": "18:38.93",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Diksha Sandip Yadav",
+          "team": "Maharashtra",
+          "time_raw": "18:47.27",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Dhayanitha S",
+          "team": "Tamilnadu",
+          "time_raw": "19:05.26",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Syna Pancholi",
+          "team": "Madhya Pradesh",
+          "time_raw": "20:12.26",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 9,
+          "name": "Ayusree Dutta",
+          "team": "Odisha",
+          "time_raw": "20:56.69",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 10,
+          "name": "Purna Amey Shikerkar",
+          "team": "Goa",
+          "time_raw": "21:49.39",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": null,
+          "name": "Adwika G Nair",
+          "team": "Tamilnadu",
+          "time_raw": null,
+          "status": "DNS",
+          "remark": null,
+          "record_set": false
+        }
+      ],
+      "relay_legs": []
+    }
+  ]
+}

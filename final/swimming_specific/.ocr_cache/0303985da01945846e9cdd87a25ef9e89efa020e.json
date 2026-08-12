@@ -1,0 +1,400 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "29-01-2025",
+  "date_iso": "2025-01-29",
+  "date_source": "session date printed on the page",
+  "blocks": [
+    {
+      "event_no": 2,
+      "discipline": "200m Freestyle",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Prelim",
+      "date_raw": "29-01-2025",
+      "date_iso": "2025-01-29",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "53.79",
+      "record_holder": "Sajan Prakash",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-29",
+      "results": [
+        {
+          "rank": 15,
+          "name": "Shayla",
+          "team": "Uttar Pradesh",
+          "time_raw": "2:27.88",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 16,
+          "name": "Dakshina Bijo P",
+          "team": "Kerala",
+          "time_raw": "2:28.58",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 17,
+          "name": "Shubnoor Kaur",
+          "team": "Punjab",
+          "time_raw": "2:29.54",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 18,
+          "name": "Vanshika",
+          "team": "Punjab",
+          "time_raw": "2:33.90",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 19,
+          "name": "Nirmala. R",
+          "team": "Kerala",
+          "time_raw": "2:35.67",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 20,
+          "name": "Purna Amey Shikerkar",
+          "team": "Goa",
+          "time_raw": "2:35.98",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 21,
+          "name": "Bhavya Trivedi",
+          "team": "Chhattisgarh",
+          "time_raw": "2:44.14",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 22,
+          "name": "Gaitri Thoudam",
+          "team": "Manipur",
+          "time_raw": "2:54.52",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 23,
+          "name": "Tisha Verma",
+          "team": "Uttarakhand",
+          "time_raw": "3:11.45",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 3,
+      "discipline": "100m Butterfly",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Prelim",
+      "date_raw": "29-01-2025",
+      "date_iso": "2025-01-29",
+      "continued": false,
+      "record_type": null,
+      "record_time": null,
+      "record_holder": null,
+      "record_nation": null,
+      "record_place": null,
+      "record_date": null,
+      "results": [
+        {
+          "rank": 1,
+          "name": "Sajan Prakash",
+          "team": "Kerala",
+          "time_raw": "54.87",
+          "status": "Q",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Benediction Rohit",
+          "team": "Tamilnadu",
+          "time_raw": "55.55",
+          "status": "Q",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Mihir Ambre",
+          "team": "Maharashtra",
+          "time_raw": "55.59",
+          "status": "Q",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Bikram Changmai",
+          "team": "Assam",
+          "time_raw": "55.93",
+          "status": "Q",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Jananjoy Jyoti Hazarika",
+          "team": "Assam",
+          "time_raw": "56.02",
+          "status": "Q",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Harsh Saroha",
+          "team": "Haryana",
+          "time_raw": "56.04",
+          "status": "Q",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Salil Bhagwat",
+          "team": "Maharashtra",
+          "time_raw": "56.98",
+          "status": "Q",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Aryan Panchal",
+          "team": "Gujarat",
+          "time_raw": "57.39",
+          "status": "Q",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 9,
+          "name": "Aneesh S Gowda",
+          "team": "Karnataka",
+          "time_raw": "57.42",
+          "status": "R",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 10,
+          "name": "Dharshan S",
+          "team": "Karnataka",
+          "time_raw": "57.57",
+          "status": "R",
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 11,
+          "name": "Vishnu. G",
+          "team": "Kerala",
+          "time_raw": "57.86",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 12,
+          "name": "Gotteti Sampath Kumar Yadav",
+          "team": "Andhra Pradesh",
+          "time_raw": "58.82",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 13,
+          "name": "Vraj Patel",
+          "team": "Gujarat",
+          "time_raw": "58.87",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 14,
+          "name": "Anshav Jindal",
+          "team": "Punjab",
+          "time_raw": "59.16",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 15,
+          "name": "Saswata Das",
+          "team": "Bengal",
+          "time_raw": "59.46",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 16,
+          "name": "Laitonjam Lanchenba",
+          "team": "Manipur",
+          "time_raw": "59.69",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 17,
+          "name": "Arjun M",
+          "team": "SSCB",
+          "time_raw": "1:00.27",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 18,
+          "name": "Shubrant Patra",
+          "team": "Odisha",
+          "time_raw": "1:00.35",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 19,
+          "name": "Abhay Prakash Sahu",
+          "team": "Chhattisgarh",
+          "time_raw": "1:01.50",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 20,
+          "name": "Vikkas P",
+          "team": "SSCB",
+          "time_raw": "1:01.57",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 21,
+          "name": "Kanishk Nagar",
+          "team": "Rajasthan",
+          "time_raw": "1:01.93",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 22,
+          "name": "Saikat Chatterjee",
+          "team": "Telangana",
+          "time_raw": "1:03.01",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 23,
+          "name": "Anvesh Singh",
+          "team": "Madhya Pradesh",
+          "time_raw": "1:03.22",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 24,
+          "name": "Samunuri Jagadeesh",
+          "team": "Andhra Pradesh",
+          "time_raw": "1:04.85",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 25,
+          "name": "Pintu Yadav",
+          "team": "Uttar Pradesh",
+          "time_raw": "1:07.67",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 26,
+          "name": "Parth",
+          "team": "Uttarakhand",
+          "time_raw": "1:10.75",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 27,
+          "name": "Rahul Dayanand Patil",
+          "team": "Goa",
+          "time_raw": "1:11.14",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 28,
+          "name": "Aahil Sheikh",
+          "team": "Goa",
+          "time_raw": "1:19.89",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": null,
+          "name": "Yatharth Singh Yadav",
+          "team": "Uttar Pradesh",
+          "time_raw": "1:07.57",
+          "status": "DSQ",
+          "remark": "Early Start",
+          "record_set": false
+        },
+        {
+          "rank": null,
+          "name": "Syantan Roy",
+          "team": "Bihar",
+          "time_raw": "1:12.40",
+          "status": "DSQ",
+          "remark": "Breast stroke kick during stroke",
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    }
+  ]
+}

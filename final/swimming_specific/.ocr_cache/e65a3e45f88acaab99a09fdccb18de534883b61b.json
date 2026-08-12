@@ -1,0 +1,348 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "02-02-2025",
+  "date_iso": "2025-02-02",
+  "date_source": "Event 29 header",
+  "blocks": [
+    {
+      "event_no": 29,
+      "discipline": "50m Butterfly",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "02-02-2025",
+      "date_iso": "2025-02-02",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "27.70",
+      "record_holder": "Nina Venkatesh",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-11-02",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Nina Venkatesh",
+          "team": "Karnataka",
+          "time_raw": "28.38",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Dhinidhi Desinghu",
+          "team": "Karnataka",
+          "time_raw": "28.80",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Rujuta Rajadnya",
+          "team": "Maharashtra",
+          "time_raw": "29.12",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Snigdha Ghosh",
+          "team": "Bengal",
+          "time_raw": "29.20",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Shristi Upadhaya",
+          "team": "Odisha",
+          "time_raw": "29.85",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Jahnabi Kashyap",
+          "team": "Assam",
+          "time_raw": "29.88",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Bhumi Gupta",
+          "team": "Chhattisgarh",
+          "time_raw": "30.09",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Aditi Satish Hegde",
+          "team": "Maharashtra",
+          "time_raw": "30.26",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 30,
+      "discipline": "50m Butterfly",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "02-02-2025",
+      "date_iso": "2025-02-02",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "24.55",
+      "record_holder": "Benedicton Rohit",
+      "record_nation": "IND",
+      "record_place": "HALDWANI UTTARAKHAND",
+      "record_date": "2023-11-02",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Benedicton Rohit",
+          "team": "Tamilnadu",
+          "time_raw": "24.39",
+          "status": "NMR",
+          "remark": null,
+          "record_set": true
+        },
+        {
+          "rank": 2,
+          "name": "Mihir Ambre",
+          "team": "Maharashtra",
+          "time_raw": "25.02",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Harsh Saroha",
+          "team": "Haryana",
+          "time_raw": "25.22",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Sajan Prakash",
+          "team": "Kerala",
+          "time_raw": "25.23",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Salil Bhagwat",
+          "team": "Maharashtra",
+          "time_raw": "25.25",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Bikram Changmai",
+          "team": "Assam",
+          "time_raw": "25.32",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Jananjoy Jyoti Hazarika",
+          "team": "Assam",
+          "time_raw": "25.33",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Prithvi M",
+          "team": "Karnataka",
+          "time_raw": "25.60",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 31,
+      "discipline": "800m Freestyle",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Results",
+      "date_raw": "03-02-2025",
+      "date_iso": "2025-02-03",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "8:07.43",
+      "record_holder": "Kushagra Rawat",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-11-02",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Kushagra Rawat",
+          "team": "Delhi",
+          "time_raw": "8:12.89",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Aryan Nehra",
+          "team": "Gujarat",
+          "time_raw": "8:23.62",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Aneesh S Gowda",
+          "team": "Karnataka",
+          "time_raw": "8:24.39",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Mongam Theerdhu Samadev",
+          "team": "Andhra Pradesh",
+          "time_raw": "8:35.40",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Shoan Ganguly",
+          "team": "Karnataka",
+          "time_raw": "8:38.64",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Anurag R Singh",
+          "team": "Uttar Pradesh",
+          "time_raw": "8:43.86",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Gotteti Sampath Kumar Yadav",
+          "team": "Andhra Pradesh",
+          "time_raw": "8:44.67",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Abhinav. S",
+          "team": "Kerala",
+          "time_raw": "8:45.57",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 9,
+          "name": "Ronak Nitin Sawant",
+          "team": "SSCB",
+          "time_raw": "8:48.22",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 10,
+          "name": "Rishi Rajesh Bhagat",
+          "team": "Maharashtra",
+          "time_raw": "8:51.41",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 11,
+          "name": "Anvesh Singh",
+          "team": "Madhya Pradesh",
+          "time_raw": "8:56.94",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 12,
+          "name": "Shubham Dadaso Dhaygude",
+          "team": "Maharashtra",
+          "time_raw": "8:57.19",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 13,
+          "name": "Army Pal",
+          "team": "Bengal",
+          "time_raw": "9:19.55",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 14,
+          "name": "Anshuman Vashist",
+          "team": "Odisha",
+          "time_raw": "9:24.27",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 15,
+          "name": "Akash G.M",
+          "team": "Kerala",
+          "time_raw": "9:24.64",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    }
+  ]
+}

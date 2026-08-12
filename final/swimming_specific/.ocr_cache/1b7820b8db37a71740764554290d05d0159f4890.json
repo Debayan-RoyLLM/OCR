@@ -1,0 +1,309 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "02-02-2025",
+  "date_iso": "2025-02-02",
+  "date_source": "first block's date",
+  "blocks": [
+    {
+      "event_no": 26,
+      "discipline": "400m Freestyle",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "02-02-2025",
+      "date_iso": "2025-02-02",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "3:55.84",
+      "record_holder": "Kushagra Rawat",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-11-03",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Kushagra Rawat",
+          "team": "Delhi",
+          "time_raw": "3:57.89",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Aneesh S Gowda",
+          "team": "Karnataka",
+          "time_raw": "4:00.45",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Aryan Nehra",
+          "team": "Gujarat",
+          "time_raw": "4:02.60",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Dhakshan S",
+          "team": "Karnataka",
+          "time_raw": "4:03.57",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Gotteti Sampath Kumar Yadav",
+          "team": "Andhra Pradesh",
+          "time_raw": "4:07.99",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Mongam Theerdhu Samadev",
+          "team": "Andhra Pradesh",
+          "time_raw": "4:08.01",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Tirthank Pegu",
+          "team": "Assam",
+          "time_raw": "4:08.36",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Rishi Rajesh Bhagat",
+          "team": "Maharashtra",
+          "time_raw": "4:13.56",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 27,
+      "discipline": "100m Backstroke",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "02-02-2025",
+      "date_iso": "2025-02-02",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "1:04.35",
+      "record_holder": "Maana Patel",
+      "record_nation": "GUJ",
+      "record_place": "RAJKOT",
+      "record_date": "2022-10-06",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Soubirty Mondal",
+          "team": "Bengal",
+          "time_raw": "1:06.66",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Pratishtha Dangi",
+          "team": "Maharashtra",
+          "time_raw": "1:07.52",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Pratyasa Ray",
+          "team": "Odisha",
+          "time_raw": "1:07.77",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Vihitha Nayana",
+          "team": "Karnataka",
+          "time_raw": "1:08.36",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Jiya Yadav",
+          "team": "Uttar Pradesh",
+          "time_raw": "1:09.26",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Siddhi G Shah",
+          "team": "Karnataka",
+          "time_raw": "1:09.27",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Rujuta Rajadnya",
+          "team": "Maharashtra",
+          "time_raw": "1:09.43",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Pramiti Gnanasekaran",
+          "team": "Tamilnadu",
+          "time_raw": "1:09.81",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 28,
+      "discipline": "100m Backstroke",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "02-02-2025",
+      "date_iso": "2025-02-02",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "55.59",
+      "record_holder": "Srihari Nataraj",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-11-02",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Srihari Nataraj",
+          "team": "Karnataka",
+          "time_raw": "56.26",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Akash Mani",
+          "team": "Karnataka",
+          "time_raw": "56.36",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Rishabh Das",
+          "team": "Maharashtra",
+          "time_raw": "56.80",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Nithik Nathella",
+          "team": "Tamilnadu",
+          "time_raw": "57.64",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Devansh Parmar",
+          "team": "Gujarat",
+          "time_raw": "59.48",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Soumyajit Saha",
+          "team": "Bengal",
+          "time_raw": "59.61",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "M.J.Praveen Kumar",
+          "team": "Tamilnadu",
+          "time_raw": "1:00.19",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Aaryan Bhosale",
+          "team": "Maharashtra",
+          "time_raw": "1:00.54",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    }
+  ]
+}

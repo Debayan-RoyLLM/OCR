@@ -1,0 +1,285 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "04-02-2025",
+  "date_iso": "2025-02-04",
+  "date_source": "session date printed on first block",
+  "blocks": [
+    {
+      "event_no": 39,
+      "discipline": "100m Breaststroke",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "04-02-2025",
+      "date_iso": "2025-02-04",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "1:02.12",
+      "record_holder": "SANDEEP SEJWAL",
+      "record_nation": "M.P.",
+      "record_place": "KERALA",
+      "record_date": "2015-02-07",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Vidith S Shankar",
+          "team": "Karnataka",
+          "time_raw": "1:03.97",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "S.Danush",
+          "team": "Tamilnadu",
+          "time_raw": "1:04.51",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Rana Pratap",
+          "team": "Jharkhand",
+          "time_raw": "1:04.57",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Lohith Mogili",
+          "team": "Andhra Pradesh",
+          "time_raw": "1:05.83",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Prithviraj Dange",
+          "team": "Maharashtra",
+          "time_raw": "1:07.13",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Bhhagya Gahlaut",
+          "team": "Delhi",
+          "time_raw": "1:07.54",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Abhinandan Khandelwal",
+          "team": "Rajasthan",
+          "time_raw": "1:07.86",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Dipan Das",
+          "team": "Bengal",
+          "time_raw": "1:19.06",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 40,
+      "discipline": "100m Freestyle",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "04-02-2025",
+      "date_iso": "2025-02-04",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "57.87",
+      "record_holder": "Dhinidhi Desinghu",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-11-04",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Dhinidhi Desinghu",
+          "team": "Karnataka",
+          "time_raw": "57.34",
+          "status": "NMR",
+          "remark": null,
+          "record_set": true
+        },
+        {
+          "rank": 2,
+          "name": "Titiksha Rawat",
+          "team": "Delhi",
+          "time_raw": "59.38",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Aditi Satish Hegde",
+          "team": "Maharashtra",
+          "time_raw": "59.49",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Avantika Chawan",
+          "team": "Maharashtra",
+          "time_raw": "59.70",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Latiesha Mandana",
+          "team": "Karnataka",
+          "time_raw": "1:00.87",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Deeksha Sivakumar",
+          "team": "Tamilnadu",
+          "time_raw": "1:00.95",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Snigdha Ghosh",
+          "team": "Bengal",
+          "time_raw": "1:01.44",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Jahnabi Kashyap",
+          "team": "Assam",
+          "time_raw": "1:01.50",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 41,
+      "discipline": "100m Freestyle",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "04-02-2025",
+      "date_iso": "2025-02-04",
+      "continued": false,
+      "record_type": null,
+      "record_time": null,
+      "record_holder": null,
+      "record_nation": null,
+      "record_place": null,
+      "record_date": null,
+      "results": [
+        {
+          "rank": 1,
+          "name": "Srihari Nataraj",
+          "team": "Karnataka",
+          "time_raw": "50.65",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Heer Gitesh Shah",
+          "team": "Maharashtra",
+          "time_raw": "51.61",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Rishabh Das",
+          "team": "Maharashtra",
+          "time_raw": "51.71",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Akash Mani",
+          "team": "Karnataka",
+          "time_raw": "51.83",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Benedicton Rohit",
+          "team": "Tamilnadu",
+          "time_raw": "52.04",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Joshua Thomas",
+          "team": "Tamilnadu",
+          "time_raw": "52.24",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Anshul Kothari",
+          "team": "Gujarat",
+          "time_raw": "52.88",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Harsh Saroha",
+          "team": "Haryana",
+          "time_raw": "53.01",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    }
+  ]
+}

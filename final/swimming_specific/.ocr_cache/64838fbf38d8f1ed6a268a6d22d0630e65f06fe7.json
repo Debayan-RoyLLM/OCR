@@ -1,0 +1,502 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "29-01-2025",
+  "date_iso": "2025-01-29",
+  "date_source": "session date on first block",
+  "blocks": [
+    {
+      "event_no": 4,
+      "discipline": "100m Butterfly",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Prelim",
+      "date_raw": "29-01-2025",
+      "date_iso": "2025-01-29",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "1:02.22",
+      "record_holder": "Nina Venkatesh",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-29",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Dhinidhi Desinghu",
+          "team": "Karnataka",
+          "time_raw": "1:05.40",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Snigdha Ghosh",
+          "team": "Bengal",
+          "time_raw": "1:05.77",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Shristi Upadhaya",
+          "team": "Odisha",
+          "time_raw": "1:05.82",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Bhumi Gupta",
+          "team": "Chhattisgarh",
+          "time_raw": "1:06.16",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Naisha Shetty",
+          "team": "Karnataka",
+          "time_raw": "1:06.46",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Stuti Chatterjee",
+          "team": "Haryana",
+          "time_raw": "1:06.68",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Asta Choudhury",
+          "team": "Assam",
+          "time_raw": "1:06.74",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Jahnabi Kashyap",
+          "team": "Assam",
+          "time_raw": "1:07.46",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 9,
+          "name": "Pratishtha Dangi",
+          "team": "Maharashtra",
+          "time_raw": "1:07.60",
+          "status": "R"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 10,
+          "name": "B.Roshini",
+          "team": "Tamilnadu",
+          "time_raw": "1:08.91",
+          "status": "R"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 11,
+          "name": "Hema",
+          "team": "Delhi",
+          "time_raw": "1:08.98",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 12,
+          "name": "Divyanka Dibyajyoti Pradhan",
+          "team": "Odisha",
+          "time_raw": "1:09.86",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 13,
+          "name": "Rujuta Rajadnya",
+          "team": "Maharashtra",
+          "time_raw": "1:09.92",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 14,
+          "name": "Dakshina Joshi",
+          "team": "Rajasthan",
+          "time_raw": "1:12.44",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 15,
+          "name": "Varsha S",
+          "team": "Kerala",
+          "time_raw": "1:13.63",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 16,
+          "name": "Uppalapati Premamrutha",
+          "team": "Andhra Pradesh",
+          "time_raw": "1:14.98",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 17,
+          "name": "Polavarapu Vedasri",
+          "team": "Andhra Pradesh",
+          "time_raw": "1:21.48",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 18,
+          "name": "Manjari Jaiswal",
+          "team": "Uttar Pradesh",
+          "time_raw": "1:24.93",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 5,
+      "discipline": "4 x 100m Freestyle",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Prelim",
+      "date_raw": "29-01-2025",
+      "date_iso": "2025-01-29",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "3:26.88",
+      "record_holder": "Karnataka",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-29",
+      "results": [
+        {
+          "rank": 1,
+          "name": null,
+          "team": "Tamilnadu",
+          "time_raw": "3:39.17",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": null,
+          "team": "Karnataka",
+          "time_raw": "3:40.44",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": null,
+          "team": "Maharashtra",
+          "time_raw": "3:41.75",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": null,
+          "team": "Andhra Pradesh",
+          "time_raw": "3:41.92",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": null,
+          "team": "Gujarat",
+          "time_raw": "3:43.92",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": null,
+          "team": "Bengal",
+          "time_raw": "3:44.92",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": null,
+          "team": "SSCB",
+          "time_raw": "3:45.57",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": null,
+          "team": "Punjab",
+          "time_raw": "3:50.13",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": [
+        {
+          "rank": 1,
+          "team": "Tamilnadu",
+          "leg": 1,
+          "swimmer": "Joshua Thomas"
+        },
+        {
+          "rank": 1,
+          "team": "Tamilnadu",
+          "leg": 2,
+          "swimmer": "M.J.Praveen Kumar"
+        },
+        {
+          "rank": 1,
+          "team": "Tamilnadu",
+          "leg": 3,
+          "swimmer": "M.S.Yadesh Babu"
+        },
+        {
+          "rank": 1,
+          "team": "Tamilnadu",
+          "leg": 4,
+          "swimmer": "Benediction Rohit"
+        },
+        {
+          "rank": 2,
+          "team": "Karnataka",
+          "leg": 1,
+          "swimmer": "Akash Mani"
+        },
+        {
+          "rank": 2,
+          "team": "Karnataka",
+          "leg": 2,
+          "swimmer": "Chinatan S Shetty"
+        },
+        {
+          "rank": 2,
+          "team": "Karnataka",
+          "leg": 3,
+          "swimmer": "Aneesh S Gowda"
+        },
+        {
+          "rank": 2,
+          "team": "Karnataka",
+          "leg": 4,
+          "swimmer": "Srihari Nataraj"
+        },
+        {
+          "rank": 3,
+          "team": "Maharashtra",
+          "leg": 1,
+          "swimmer": "Om Pravin Satam"
+        },
+        {
+          "rank": 3,
+          "team": "Maharashtra",
+          "leg": 2,
+          "swimmer": "Heer Gitesh Shah"
+        },
+        {
+          "rank": 3,
+          "team": "Maharashtra",
+          "leg": 3,
+          "swimmer": "Salil Bhagwat"
+        },
+        {
+          "rank": 3,
+          "team": "Maharashtra",
+          "leg": 4,
+          "swimmer": "Rishabh Das"
+        },
+        {
+          "rank": 4,
+          "team": "Andhra Pradesh",
+          "leg": 1,
+          "swimmer": "Mongam Theerdu Samadev"
+        },
+        {
+          "rank": 4,
+          "team": "Andhra Pradesh",
+          "leg": 2,
+          "swimmer": "Neelam Deva Ganesh"
+        },
+        {
+          "rank": 4,
+          "team": "Andhra Pradesh",
+          "leg": 3,
+          "swimmer": "Sarath Mogili"
+        },
+        {
+          "rank": 4,
+          "team": "Andhra Pradesh",
+          "leg": 4,
+          "swimmer": "Gotteti Sampath Kumar Yadav"
+        },
+        {
+          "rank": 5,
+          "team": "Gujarat",
+          "leg": 1,
+          "swimmer": "Devansh Parmar"
+        },
+        {
+          "rank": 5,
+          "team": "Gujarat",
+          "leg": 2,
+          "swimmer": "Anshul Kothari"
+        },
+        {
+          "rank": 5,
+          "team": "Gujarat",
+          "leg": 3,
+          "swimmer": "Heer Pitroda"
+        },
+        {
+          "rank": 5,
+          "team": "Gujarat",
+          "leg": 4,
+          "swimmer": "Aryan Nehra"
+        },
+        {
+          "rank": 6,
+          "team": "Bengal",
+          "leg": 1,
+          "swimmer": "Parambrata Biswas"
+        },
+        {
+          "rank": 6,
+          "team": "Bengal",
+          "leg": 2,
+          "swimmer": "Soumyajit Saha"
+        },
+        {
+          "rank": 6,
+          "team": "Bengal",
+          "leg": 3,
+          "swimmer": "Utsab Datta"
+        },
+        {
+          "rank": 6,
+          "team": "Bengal",
+          "leg": 4,
+          "swimmer": "Sougata Das"
+        },
+        {
+          "rank": 7,
+          "team": "SSCB",
+          "leg": 1,
+          "swimmer": "Unni Krishnan S"
+        },
+        {
+          "rank": 7,
+          "team": "SSCB",
+          "leg": 2,
+          "swimmer": "Ronak Nitin Sawant"
+        },
+        {
+          "rank": 7,
+          "team": "SSCB",
+          "leg": 3,
+          "swimmer": "Ansukar"
+        },
+        {
+          "rank": 7,
+          "team": "SSCB",
+          "leg": 4,
+          "swimmer": "Vikkas P"
+        },
+        {
+          "rank": 8,
+          "team": "Punjab",
+          "leg": 1,
+          "swimmer": "Mridul Punia"
+        },
+        {
+          "rank": 8,
+          "team": "Punjab",
+          "leg": 2,
+          "swimmer": "Anshav Jindal"
+        },
+        {
+          "rank": 8,
+          "team": "Punjab",
+          "leg": 3,
+          "swimmer": "Lakshya Jindal"
+        },
+        {
+          "rank": 8,
+          "team": "Punjab",
+          "leg": 4,
+          "swimmer": "Rishabh Singh Dadhwal"
+        }
+      ]
+    }
+  ]
+}

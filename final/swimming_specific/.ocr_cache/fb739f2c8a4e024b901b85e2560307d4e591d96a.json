@@ -1,0 +1,309 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "30-01-2025",
+  "date_iso": "2025-01-30",
+  "date_source": "Event 8 heading",
+  "blocks": [
+    {
+      "event_no": 8,
+      "discipline": "400m Medley",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "30-01-2025",
+      "date_iso": "2025-01-30",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "5:07.15",
+      "record_holder": "RICHА MISHRA",
+      "record_nation": "M.P.",
+      "record_place": "KERALA",
+      "record_date": "2015-02-03",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Saanvi Deshwal",
+          "team": "Maharashtra",
+          "time_raw": "5:08.49",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Shreenithi Natesan",
+          "team": "Tamilnadu",
+          "time_raw": "5:13.41",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Bhavya Sachdeva",
+          "team": "Delhi",
+          "time_raw": "5:18.18",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Shrungi Rajesh Bandekar",
+          "team": "Goa",
+          "time_raw": "5:24.45",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Jedidah A",
+          "team": "Karnataka",
+          "time_raw": "5:26.64",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Meenakshi Menon",
+          "team": "Karnataka",
+          "time_raw": "5:32.91",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Nadakuditi Pavani Sarayu",
+          "team": "Andhra Pradesh",
+          "time_raw": "5:42.49",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Pratyasa Ray",
+          "team": "Odisha",
+          "time_raw": "5:56.94",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 9,
+      "discipline": "200m Breaststroke",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "30-01-2025",
+      "date_iso": "2025-01-30",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "2:13.53",
+      "record_holder": "SANDEEP SEJWAL",
+      "record_nation": "M.P.",
+      "record_place": "KERALA",
+      "record_date": "2015-02-02",
+      "results": [
+        {
+          "rank": 1,
+          "name": "S.Danush",
+          "team": "Tamilnadu",
+          "time_raw": "2:19.68",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Manikanta L",
+          "team": "Karnataka",
+          "time_raw": "2:21.78",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Rana Pratap",
+          "team": "Jharkhand",
+          "time_raw": "2:24.61",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Lohith Mogili",
+          "team": "Andhra Pradesh",
+          "time_raw": "2:25.01",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Aditya Dubey",
+          "team": "Delhi",
+          "time_raw": "2:27.65",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Abhinandan Khandelwal",
+          "team": "Rajasthan",
+          "time_raw": "2:28.96",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Daniel Paul J",
+          "team": "Karnataka",
+          "time_raw": "2:29.42",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Aryan Nehra",
+          "team": "Gujarat",
+          "time_raw": "2:31.68",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 10,
+      "discipline": "200m Breaststroke",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "30-01-2025",
+      "date_iso": "2025-01-30",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "2:40.62",
+      "record_holder": "Harshitha Jayaram",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-30",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Harshitha Jayaram",
+          "team": "Kerala",
+          "time_raw": "2:42.38",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Shreenithi Natesan",
+          "team": "Tamilnadu",
+          "time_raw": "2:42.44",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Divyanka Dibyajyoti Pradhan",
+          "team": "Odisha",
+          "time_raw": "2:45.56",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Venika Parikh",
+          "team": "Gujarat",
+          "time_raw": "2:46.49",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Jyoti Patil",
+          "team": "Maharashtra",
+          "time_raw": "2:46.63",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Saanvi Deshwal",
+          "team": "Maharashtra",
+          "time_raw": "2:50.03",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Vasupalli Naga Greeshmini",
+          "team": "Andhra Pradesh",
+          "time_raw": "2:52.73",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Lakshya Shivananda",
+          "team": "Karnataka",
+          "time_raw": "2:52.92",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    }
+  ]
+}

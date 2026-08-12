@@ -1,0 +1,449 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "29-01-2025",
+  "date_iso": "2025-01-29",
+  "date_source": "session date on first block",
+  "blocks": [
+    {
+      "event_no": 1,
+      "discipline": "200m Freestyle",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Prelim",
+      "date_raw": "29-01-2025",
+      "date_iso": "2025-01-29",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "1:49.09",
+      "record_holder": "Srihari Nataraj",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-29",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Srihari Nataraj",
+          "team": "Karnataka",
+          "time_raw": "1:54.80",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Kushagra Rawat",
+          "team": "Delhi",
+          "time_raw": "1:56.12",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Aneesh S Gowda",
+          "team": "Karnataka",
+          "time_raw": "1:56.57",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Sajan Prakash",
+          "team": "Kerala",
+          "time_raw": "1:57.22",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Rishabh Das",
+          "team": "Maharashtra",
+          "time_raw": "1:57.69",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Aryan Nehra",
+          "team": "Gujarat",
+          "time_raw": "1:57.73",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Tirthank Pegu",
+          "team": "Assam",
+          "time_raw": "1:58.04",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Gotteti Sampath Kumar Yadav",
+          "team": "Andhra Pradesh",
+          "time_raw": "1:58.13",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 9,
+          "name": "Abhinav. S",
+          "team": "Kerala",
+          "time_raw": "1:58.87",
+          "status": "R"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 10,
+          "name": "Ronak Nitin Sawant",
+          "team": "SSCB",
+          "time_raw": "1:58.91",
+          "status": "R"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 11,
+          "name": "Devansh Parmar",
+          "team": "Gujarat",
+          "time_raw": "2:01.02",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 12,
+          "name": "Shubham Dadaso Dhaygude",
+          "team": "Maharashtra",
+          "time_raw": "2:03.24",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 13,
+          "name": "Nithik Nathella",
+          "team": "Tamilnadu",
+          "time_raw": "2:03.51",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 14,
+          "name": "Varshith Dhlipudi",
+          "team": "Telangana",
+          "time_raw": "2:03.67",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 15,
+          "name": "Shubrant Patra",
+          "team": "Odisha",
+          "time_raw": "2:05.43",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 15,
+          "name": "Unni Krishnan S",
+          "team": "SSCB",
+          "time_raw": "2:05.43",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 17,
+          "name": "Raiyan Rajeeb",
+          "team": "Delhi",
+          "time_raw": "2:07.18",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 18,
+          "name": "Lakshya Jindal",
+          "team": "Punjab",
+          "time_raw": "2:09.23",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 19,
+          "name": "Atul Arya",
+          "team": "Haryana",
+          "time_raw": "2:09.25",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 20,
+          "name": "Parth Shrivastva",
+          "team": "Chhattisgarh",
+          "time_raw": "2:09.32",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 22,
+          "name": "Aryan Shashi Sharma",
+          "team": "Goa",
+          "time_raw": "2:09.32",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 23,
+          "name": "Shlok Gureja",
+          "team": "Madhya Pradesh",
+          "time_raw": "2:10.53",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 24,
+          "name": "Dwayne Mario Clemente",
+          "team": "Goa",
+          "time_raw": "2:32.95",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 24,
+          "name": "Deepak Kumar",
+          "team": "Uttarakhand",
+          "time_raw": "2:39.28",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": null,
+          "name": "Aman Raj",
+          "team": "Bihar",
+          "time_raw": null,
+          "status": "DNS"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": null,
+          "name": "V.Leonard",
+          "team": "Tamilnadu",
+          "time_raw": null,
+          "status": "DNS"
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+    "relay_legs": []
+    },
+    {
+      "event_no": 2,
+      "discipline": "200m Freestyle",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Prelim",
+      "date_raw": "29-01-2025",
+      "date_iso": "2025-01-29",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "2:07.08",
+      "record_holder": "Hashika Ramachandra",
+      "record_nation": "IND",
+      "record_place": "RAJKOT",
+      "record_date": "2022-10-02",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Dhinidhi Desinghu",
+          "team": "Karnataka",
+          "time_raw": "2:09.68",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Shreenithi Natesan",
+          "team": "Tamilnadu",
+          "time_raw": "2:11.05",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Bhavya Sachdeva",
+          "team": "Delhi",
+          "time_raw": "2:11.09",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Jahnabi Kashyap",
+          "team": "Assam",
+          "time_raw": "2:12.93",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Aditi Satish Hegde",
+          "team": "Maharashtra",
+          "time_raw": "2:14.20",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Titiksha Rawat",
+          "team": "Delhi",
+          "time_raw": "2:14.64",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Subhranshini Priyadarshini",
+          "team": "Assam",
+          "time_raw": "2:14.84",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Meenakshi Menon",
+          "team": "Karnataka",
+          "time_raw": "2:15.40",
+          "status": "Q"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 9,
+          "name": "Anvi Deshwal",
+          "team": "Maharashtra",
+          "time_raw": "2:16.84",
+          "status": "R"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 10,
+          "name": "Shrungi Rajesh Bandekar",
+          "team": "Goa",
+          "time_raw": "2:19.93",
+          "status": "R"
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 11,
+          "name": "Adwika G Nair",
+          "team": "Tamilnadu",
+          "time_raw": "2:21.24",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 12,
+          "name": "Praniti Singh Choudhary",
+          "team": "Rajasthan",
+          "time_raw": "2:22.14",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 13,
+          "name": "Anshika Aradhna Sahoo",
+          "team": "Odisha",
+          "time_raw": "2:27.34",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        },
+        {
+          "rank": 14,
+          "name": "Bhumi Agarwal",
+          "team": "Madhya Pradesh",
+          "time_raw": "2:27.41",
+          "status": null
+        ,
+        "remark": null,
+        "record_set": false
+        }
+      ]
+    ,
+    "relay_legs": []
+    }
+  ]
+}

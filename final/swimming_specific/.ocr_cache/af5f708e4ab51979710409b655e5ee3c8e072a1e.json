@@ -1,0 +1,227 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "04-02-2025",
+  "date_iso": "2025-02-04",
+  "date_source": "session date on first block",
+  "blocks": [
+    {
+      "event_no": 42,
+      "discipline": "4 x 100m Medley",
+      "gender": "Mixed",
+      "age_group": "Open",
+      "phase": "Results",
+      "date_raw": "04-02-2025",
+      "date_iso": "2025-02-04",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "4:03.80",
+      "record_holder": "Karnataka",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-11-04",
+      "results": [
+        {
+          "rank": 1,
+          "name": null,
+          "team": "Karnataka",
+          "time_raw": "4:03.91",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": null,
+          "team": "Tamilnadu",
+          "time_raw": "4:10.61",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": null,
+          "team": "Maharashtra",
+          "time_raw": "4:11.09",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": null,
+          "team": "Bengal",
+          "time_raw": "4:17.52",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": null,
+          "team": "Odisha",
+          "time_raw": "4:28.50",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": null,
+          "team": "Punjab",
+          "time_raw": "4:53.72",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ],
+      "relay_legs": [
+        {
+          "rank": 1,
+          "team": "Karnataka",
+          "leg": 1,
+          "swimmer": "Srihari Nataraj"
+        },
+        {
+          "rank": 1,
+          "team": "Karnataka",
+          "leg": 2,
+          "swimmer": "Vidith S Shankar"
+        },
+        {
+          "rank": 1,
+          "team": "Karnataka",
+          "leg": 3,
+          "swimmer": "Naisha Shetty"
+        },
+        {
+          "rank": 1,
+          "team": "Karnataka",
+          "leg": 4,
+          "swimmer": "Dhinidhi Desinghu"
+        },
+        {
+          "rank": 2,
+          "team": "Tamilnadu",
+          "leg": 1,
+          "swimmer": "Pramiti Gnanasekaran"
+        },
+        {
+          "rank": 2,
+          "team": "Tamilnadu",
+          "leg": 2,
+          "swimmer": "S.Danush"
+        },
+        {
+          "rank": 2,
+          "team": "Tamilnadu",
+          "leg": 3,
+          "swimmer": "Benedicton Rohit"
+        },
+        {
+          "rank": 2,
+          "team": "Tamilnadu",
+          "leg": 4,
+          "swimmer": "Deeksha Sivakumar"
+        },
+        {
+          "rank": 3,
+          "team": "Maharashtra",
+          "leg": 1,
+          "swimmer": "Rishabh Das"
+        },
+        {
+          "rank": 3,
+          "team": "Maharashtra",
+          "leg": 2,
+          "swimmer": "Jyoti Patil"
+        },
+        {
+          "rank": 3,
+          "team": "Maharashtra",
+          "leg": 3,
+          "swimmer": "Mihir Ambre"
+        },
+        {
+          "rank": 3,
+          "team": "Maharashtra",
+          "leg": 4,
+          "swimmer": "Aditi Satish Hegde"
+        },
+        {
+          "rank": 4,
+          "team": "Bengal",
+          "leg": 1,
+          "swimmer": "Soubriti Mondal"
+        },
+        {
+          "rank": 4,
+          "team": "Bengal",
+          "leg": 2,
+          "swimmer": "Dipan Das"
+        },
+        {
+          "rank": 4,
+          "team": "Bengal",
+          "leg": 3,
+          "swimmer": "Parambrata Biswas"
+        },
+        {
+          "rank": 4,
+          "team": "Bengal",
+          "leg": 4,
+          "swimmer": "Snigdha Ghosh"
+        },
+        {
+          "rank": 5,
+          "team": "Odisha",
+          "leg": 1,
+          "swimmer": "Pratyasa Ray"
+        },
+        {
+          "rank": 5,
+          "team": "Odisha",
+          "leg": 2,
+          "swimmer": "Divyanka Dibyajyoti Pradhan"
+        },
+        {
+          "rank": 5,
+          "team": "Odisha",
+          "leg": 3,
+          "swimmer": "Shubrant Patra"
+        },
+        {
+          "rank": 5,
+          "team": "Odisha",
+          "leg": 4,
+          "swimmer": "Jagjit Pradhan"
+        },
+        {
+          "rank": 6,
+          "team": "Punjab",
+          "leg": 1,
+          "swimmer": "Avni Chhabra"
+        },
+        {
+          "rank": 6,
+          "team": "Punjab",
+          "leg": 2,
+          "swimmer": "Chahat Arora"
+        },
+        {
+          "rank": 6,
+          "team": "Punjab",
+          "leg": 3,
+          "swimmer": "Anshav Jindal"
+        },
+        {
+          "rank": 6,
+          "team": "Punjab",
+          "leg": 4,
+          "swimmer": "Rishabh Singh Dadhwal"
+        }
+      ]
+    }
+  ]
+}

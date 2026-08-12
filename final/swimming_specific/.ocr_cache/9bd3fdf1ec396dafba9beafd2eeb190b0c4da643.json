@@ -1,0 +1,285 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "03-02-2025",
+  "date_iso": "2025-02-03",
+  "date_source": "Event 35 header",
+  "blocks": [
+    {
+      "event_no": 34,
+      "discipline": "200m Medley",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "03-02-2025",
+      "date_iso": "2025-02-03",
+      "continued": false,
+      "record_type": null,
+      "record_time": null,
+      "record_holder": null,
+      "record_nation": null,
+      "record_place": null,
+      "record_date": null,
+      "results": [
+        {
+          "rank": 1,
+          "name": "Saanvi Deshwal",
+          "team": "Maharashtra",
+          "time_raw": "2:24.90",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Shreenithi Natesan",
+          "team": "Tamilnadu",
+          "time_raw": "2:27.92",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Bhumi Gupta",
+          "team": "Chhattisgarh",
+          "time_raw": "2:29.54",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Shrungi Rajesh Bandekar",
+          "team": "Goa",
+          "time_raw": "2:29.96",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Jedidah A",
+          "team": "Karnataka",
+          "time_raw": "2:35.35",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Tvisha Nikhil Dixit",
+          "team": "Maharashtra",
+          "time_raw": "2:36.11",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Trisha Sindhu",
+          "team": "Karnataka",
+          "time_raw": "2:37.79",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Dhayanitha S",
+          "team": "Tamilnadu",
+          "time_raw": "2:39.18",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 35,
+      "discipline": "50m Backstroke",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "03-02-2025",
+      "date_iso": "2025-02-03",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "25.65",
+      "record_holder": "Srihari Nataraj",
+      "record_nation": "KAR",
+      "record_place": "RAJKOT",
+      "record_date": "2022-10-07",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Srihari Nataraj",
+          "team": "Karnataka",
+          "time_raw": "26.09",
+          "status": null,
+          "remark": null,
+          "record_set": true
+        },
+        {
+          "rank": 2,
+          "name": "Akash Mani",
+          "team": "Karnataka",
+          "time_raw": "26.42",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Rishabh Das",
+          "team": "Maharashtra",
+          "time_raw": "26.45",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Benedicton Rohit",
+          "team": "Tamilnadu",
+          "time_raw": "26.74",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Soumyajit Saha",
+          "team": "Bengal",
+          "time_raw": "27.43",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "M.J.Praveen Kumar",
+          "team": "Tamilnadu",
+          "time_raw": "27.51",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Madhu P S",
+          "team": "SSCB",
+          "time_raw": "27.72",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Arjun Singh",
+          "team": "Haryana",
+          "time_raw": "28.25",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 36,
+      "discipline": "50m Backstroke",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "03-02-2025",
+      "date_iso": "2025-02-03",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "29.77",
+      "record_holder": "Maana Patel",
+      "record_nation": "GUJ",
+      "record_place": "RAJKOT",
+      "record_date": "2022-10-07",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Vihitha Nayana",
+          "team": "Karnataka",
+          "time_raw": "31.46",
+          "status": null,
+          "remark": null,
+          "record_set": true
+        },
+        {
+          "rank": 2,
+          "name": "Soubriti Mondal",
+          "team": "Bengal",
+          "time_raw": "31.47",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Rujuta Rajadnya",
+          "team": "Maharashtra",
+          "time_raw": "31.50",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Shalini R Dixit",
+          "team": "Karnataka",
+          "time_raw": "31.68",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Deeksha Sivakumar",
+          "team": "Tamilnadu",
+          "time_raw": "31.84",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Jiya Yadav",
+          "team": "Uttar Pradesh",
+          "time_raw": "31.92",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Pratishtha Dangi",
+          "team": "Maharashtra",
+          "time_raw": "32.04",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Pratyasa Ray",
+          "team": "Odisha",
+          "time_raw": "32.07",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    }
+  ]
+}

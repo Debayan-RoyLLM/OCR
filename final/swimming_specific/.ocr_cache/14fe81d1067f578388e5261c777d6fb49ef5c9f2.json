@@ -1,0 +1,285 @@
+{
+  "page_type": "result_list",
+  "event": "38th NATIONAL GAMES 2025",
+  "date_raw": "29-01-2025",
+  "date_iso": "2025-01-29",
+  "date_source": "first block heading",
+  "blocks": [
+    {
+      "event_no": 1,
+      "discipline": "200m Freestyle",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "29-01-2025",
+      "date_iso": "2025-01-29",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "1:49.09",
+      "record_holder": "Srihari Nataraj",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-29",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Srihari Nataraj",
+          "team": "Karnataka",
+          "time_raw": "1:50.57",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Aneesh S Gowda",
+          "team": "Karnataka",
+          "time_raw": "1:52.42",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Sajan Prakash",
+          "team": "Kerala",
+          "time_raw": "1:53.73",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Kushagra Rawat",
+          "team": "Delhi",
+          "time_raw": "1:54.38",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Aryan Nehra",
+          "team": "Gujarat",
+          "time_raw": "1:54.53",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Rishabh Das",
+          "team": "Maharashtra",
+          "time_raw": "1:54.61",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Tirthank Pegu",
+          "team": "Assam",
+          "time_raw": "1:55.00",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Gotteti Sampath Kumar Yadav",
+          "team": "Andhra Pradesh",
+          "time_raw": "1:58.45",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 2,
+      "discipline": "200m Freestyle",
+      "gender": "Women",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "29-01-2025",
+      "date_iso": "2025-01-29",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "2:07.08",
+      "record_holder": "Hashika Ramachandra",
+      "record_nation": "IND",
+      "record_place": "RAJKOT",
+      "record_date": "2022-10-02",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Dhinidhi Desinghu",
+          "team": "Karnataka",
+          "time_raw": "2:03.24",
+          "status": null,
+          "remark": null,
+          "record_set": true
+        },
+        {
+          "rank": 2,
+          "name": "Bhavya Sachdeva",
+          "team": "Delhi",
+          "time_raw": "2:08.68",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Aditi Satish Hegde",
+          "team": "Maharashtra",
+          "time_raw": "2:09.74",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Shreenithi Natesan",
+          "team": "Tamilnadu",
+          "time_raw": "2:10.43",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Titiksha Rawat",
+          "team": "Delhi",
+          "time_raw": "2:10.43",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Jahnabi Kashyap",
+          "team": "Assam",
+          "time_raw": "2:12.94",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Meenakshi Menon",
+          "team": "Karnataka",
+          "time_raw": "2:13.78",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Subhranshini Priyadarshini",
+          "team": "Assam",
+          "time_raw": "2:13.84",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    },
+    {
+      "event_no": 3,
+      "discipline": "100m Butterfly",
+      "gender": "Men",
+      "age_group": "Open",
+      "phase": "Final",
+      "date_raw": "29-01-2025",
+      "date_iso": "2025-01-29",
+      "continued": false,
+      "record_type": "NATIONAL GAMES",
+      "record_time": "53.79",
+      "record_holder": "Sajan Prakash",
+      "record_nation": "IND",
+      "record_place": "GOA",
+      "record_date": "2023-10-29",
+      "results": [
+        {
+          "rank": 1,
+          "name": "Benedicton Rohit",
+          "team": "Tamilnadu",
+          "time_raw": "53.89",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 2,
+          "name": "Mihir Ambre",
+          "team": "Maharashtra",
+          "time_raw": "54.24",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 3,
+          "name": "Sajan Prakash",
+          "team": "Kerala",
+          "time_raw": "54.52",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 4,
+          "name": "Bikram Changmai",
+          "team": "Assam",
+          "time_raw": "55.32",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 5,
+          "name": "Harsh Saroha",
+          "team": "Haryana",
+          "time_raw": "55.36",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 6,
+          "name": "Jananjoy Jyoti Hazarika",
+          "team": "Assam",
+          "time_raw": "55.49",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 7,
+          "name": "Salil Bhagwat",
+          "team": "Maharashtra",
+          "time_raw": "55.69",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        },
+        {
+          "rank": 8,
+          "name": "Aryan Panchal",
+          "team": "Gujarat",
+          "time_raw": "56.89",
+          "status": null,
+          "remark": null,
+          "record_set": false
+        }
+      ]
+    ,
+      "relay_legs": []
+    }
+  ]
+}
